@@ -43,6 +43,46 @@ if (!isProduction) { // if the app is not in production use cors
   );
 
   app.use(routes) // we use our routes folder
+
+
+  app.use((_req, _res, next) => {
+    const err = new Error("The requested resource couldn't be found."); // if theres an err we say the resouce cant be found 
+    err.title = "Resource Not Found"; // the title is not found
+    err.errors = { message: "The requested resource couldn't be found." }; // we give the user a mesagage 
+    err.status = 404; // we set the staus to be 404 which is not found 
+    next(err); // pass the err to the next function to be caught 
+  });
+
+
+  const { ValidationError } = require('sequelize');
+
+// ...
+
+// Process sequelize errors
+app.use((err, _req, _res, next) => {
+  // check if error is a Sequelize error:
+  if (err instanceof ValidationError) { // we check if the err is apart of the ValidationError 
+    let errors = {}; // we create an errors obj 
+    for (let error of err.errors) {  // we iterate through our errors object 
+      errors[error.path] = error.message;
+    }
+    err.title = 'Validation error'; // the title is 'Validation year'
+    err.errors = errors;
+  }
+  next(err);
+});
+
+
+app.use((err, _req, res, _next) => {
+  res.status(err.status || 500); /// we set the status to what is or 500
+  console.error(err); // print the err
+  res.json({ // we send a json response to the user with all the data and messages inside 
+    title: err.title || 'Server Error',
+    message: err.message,
+    errors: err.errors,
+    stack: isProduction ? null : err.stack
+  });
+});
   
 
   module.exports = app;
