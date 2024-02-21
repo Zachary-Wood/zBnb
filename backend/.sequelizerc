@@ -1,0 +1,9 @@
+// backend/.sequelizerc
+const path = require('path');
+
+module.exports = {
+  config: path.resolve('config', 'database.js'), // this is the data base we link the files to 
+  'models-path': path.resolve('db', 'models'), // cretes models folder 
+  'seeders-path': path.resolve('db', 'seeders'), // creates seeders folder 
+  'migrations-path': path.resolve('db', 'migrations') // creates migrations folder 
+};

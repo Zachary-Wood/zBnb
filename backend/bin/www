@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+// backend/bin/www
+
+// Import environment variables
+require('dotenv').config(); // req our env file 
+
+const { port } = require('../config'); // extract our port variable 
+
+const app = require('../app'); // we require our app
+const db = require('../db/models'); // we require our db 
+
+// Check the database connection before starting the app
+db.sequelize
+  .authenticate() // see if the database is working
+  .then(() => {
+    console.log('Database connection success! Sequelize is ready to use...'); // after print that the databasse is connected 
+
+    // Start listening for connections
+    app.listen(port, () => console.log(`Listening on port ${port}...`)); // the app listens for the port 
+  })
+  .catch((err) => {
+    console.log('Database connection failure.'); // if theres an error we clg a connection failure 
+    console.error(err);
+  });
