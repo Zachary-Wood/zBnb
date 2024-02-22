@@ -18,6 +18,7 @@ app.use(cookieParser()); // we want the app to use cookieParser middlewear
 app.use(express.json()); // we want our express application to send things as json
 
 
+
 // Security Middleware
 if (!isProduction) { // if the app is not in production use cors
     // enable cors only in development
