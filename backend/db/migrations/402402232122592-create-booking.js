@@ -23,6 +23,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         // unique: true
+        references: {
+          model: 'Spots',
+          key: 'id'
+        },
       },
       userId: {
         type: Sequelize.INTEGER,
