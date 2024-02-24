@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Booking.belongsTo(models.User, {
-        foreignKey: "userId"
+        foreignKey: "ownerId"
       })
       Booking.belongsTo(models.Spot, {
         foreignKey: 'spotId'
@@ -46,21 +46,21 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           isDate: true,
           isAfter: '2024-02-23',
-          async isStartDateValid(value) {
-            await Booking.findOne({
-                where: {
-                  spotId: this.spotId,
-                  endDate: {
-                    [Op.gt]: value
-                  }
-                }
-              }.then((existingBooking) => {
-                if(existingBooking) {
-                  throw new Error('Someone has a booking on this date')
-                }
-              })
-            )
-          }
+          // async isStartDateValid(value) {
+          //   await Booking.findOne({
+          //       where: {
+          //         spotId: this.spotId,
+          //         endDate: {
+          //           [Op.gt]: value
+          //         }
+          //       }
+          //     }.then((existingBooking) => {
+          //       if(existingBooking) {
+          //         throw new Error('Someone has a booking on this date')
+          //       }
+          //     })
+          //   )
+          // }
         } 
     },
     endDate: {

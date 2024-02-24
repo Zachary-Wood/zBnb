@@ -11,12 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Spot.hasMany(models.Booking, {
-        foreignKey: 'spotId'
-      })
-
+      
       Spot.belongsTo(models.User, {
         foreignKey: 'ownerId'
+      })
+      Spot.hasMany(models.Booking, {
+        foreignKey: 'spotId'
       })
     }
   }
@@ -25,7 +25,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
-        isInt: true,
         min: 1
       }
     },
@@ -34,7 +33,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
       validate: {
-        is: [/^\d{1,5}\s\w+\s(\b\w\b\s){1,2}\w.$/],
         len: [10,50]
       }
     },
@@ -60,12 +58,12 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     lat: {
-      type: DataTypes.NUMERIC,
+      type: DataTypes.INTEGER,
       allowNull: false,
       unique: true
     },
     lng: {
-      type: DataTypes.NUMERIC,
+      type: DataTypes.INTEGER,
       allowNull: false, 
       unique: true
     },
@@ -80,17 +78,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [150,500]
+        len: [100,500]
       }
       
     },
     price: {
-      type: DataTypes.NUMERIC,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         min: 30,
         max: 3000,
-        is: ["^\d+(?:[.,]\d+)*$"]
       }
     },
   }, {
