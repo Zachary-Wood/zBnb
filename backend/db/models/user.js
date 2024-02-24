@@ -16,6 +16,9 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Spot, {
         foreignKey: 'ownerId'
       })
+      User.hasMany(models.Review, {
+        foreignKey: 'userId'
+      })
     }
   }
   User.init({

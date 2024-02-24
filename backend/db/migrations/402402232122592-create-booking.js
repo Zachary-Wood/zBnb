@@ -67,7 +67,7 @@ module.exports = {
       type: 'unique',
       fields: ['spotId', 'endDate'],
       name: 'unique-spot-date-booking'
-    })
+    }, options)
   },
   async down(queryInterface, Sequelize) {
     options.tableName = "Bookings";
