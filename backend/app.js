@@ -6,6 +6,7 @@ const csurf = require('csurf');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const routes = require('./routes')
+const authentiated = require('./routes/api/session/authenticate')
 
 const { environment } = require('./config');
 const isProduction = environment === 'production';
@@ -16,7 +17,7 @@ const app = express()
 app.use(morgan('dev')); // we want to use the morgan middlewear 
 app.use(cookieParser()); // we want the app to use cookieParser middlewear
 app.use(express.json()); // we want our express application to send things as json
-
+app.use('/api/secure', authentiated) // we want to use our authentication middlewear
 
 
 // Security Middleware
