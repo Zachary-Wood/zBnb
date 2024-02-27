@@ -10,6 +10,8 @@ const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
 
 
+
+
 const validateSignup = [
     check('firstName')
       .exists({ checkFalsy: true })
@@ -40,9 +42,7 @@ const validateSignup = [
     handleValidationErrors
   ];
 
-  router.post(
-    '/',
-    validateSignup,
+  router.post('/', validateSignup,
     async (req, res) => {
       const { firstName, lastName, email, password, username } = req.body;
       const hashedPassword = bcrypt.hashSync(password);
