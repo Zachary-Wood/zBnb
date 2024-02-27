@@ -27,6 +27,7 @@ module.exports = {
           model: 'Spots',
           key: 'id'
         },
+        onDelete: 'CASCADE'
       },
       userId: {
         type: Sequelize.INTEGER,
@@ -58,21 +59,9 @@ module.exports = {
       }
     }, options);
 
-    await queryInterface.addConstraint('Bookings', {
-      type: 'unique',
-      fields: ['spotId', "userId", 'startDate', "endDate"],
-      name: 'unique-booking-for-user-spot-and-dates'
-    })
-    await queryInterface.addConstraint('Bookings', {
-      type: 'unique',
-      fields: ['spotId', 'endDate'],
-      name: 'unique-spot-date-booking'
-    }, options)
   },
   async down(queryInterface, Sequelize) {
     options.tableName = "Bookings";
-    await queryInterface.dropTable('Bookings');
-    // await queryInterface.removeConstraint('Bookings', 'unique-booking-for-user-spot-and-dates')
-    // await queryInterface.removeConstraint('Bookings', 'unique-spot-date-booking')
+    await queryInterface.dropTable(options);
   }
 };
