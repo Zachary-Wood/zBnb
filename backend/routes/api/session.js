@@ -113,9 +113,7 @@ const validateLogin = [
 
   })
 
-  router.get('/login', async(req, res) => {
-      const { credential, password } = req.body
-     
+
 
 
     
@@ -145,7 +143,7 @@ const validateLogin = [
       // res.redirect('/users/:id')
      
 
-  })
+  
 
   
   
