@@ -78,11 +78,72 @@ router.get('/', async(req,res) => {
 });
 
 // post a new spot
+router.post('/',requireAuth, validateSpot, async(req, res) => {
+    
+const {address, city, state, country, lat, lng, name, description, price} = req.body
+   
+let currUser = req.user.id
+    const spot = await Spot.findByPk(req.params.spotId)
+
+    
+    
+    const newSpot = await Spot.create({
+        ownerId: req.user.id,
+        address,
+        city, 
+        state,
+        country,
+        lat,
+        lng,
+        name, 
+        description,
+        price
+    })
+    // console.log(newSpot);
+    return res.status(201).json(newSpot)
+})
+
+// ADD AN IMAGE TO SPOT BASED ON ID
+router.post('/:spotId/images', requireAuth, async (req, res) => {
+    let currUser = req.user.id
+    const spot = await Spot.findByPk(req.params.spotId)
+
+    if(!spot) {
+        res.status(404).json({
+            "message": "Spot couldn't be found"
+          })
+    }
+
+    if(currUser !== spot.ownerId) {
+        res.status(403).json({"message": "forbidden"})
+    }
+
+
+    const {url, preview} = req.body
+
+    const newSpotImage = await SpotImage.create({
+        spotId: req.params.spotId,
+        url,
+        preview
+    })
+
+
+    res.status(200).json({
+        id: newSpotImage.id,
+        url: newSpotImage.url,
+        preview: newSpotImage.preview
+    })
+})
 
 
 
 //get all current users spots
 router.get('/current', requireAuth, async(req,res) => {
+    
+    const spot = await Spot.findByPk(req.params.spotId)
+
+        
+    
     const spots = await Spot.findAll({
         where: { ownerId: req.user.id }
     }) 
@@ -133,6 +194,9 @@ router.get('/:spotId', async(req, res) => {
                 attributes: ["id", 'firstName', 'lastName']
             } ]
         })
+        if(!spot) res.status(404).json({
+            "message": "Spot couldn't be found"
+        })
         const spotJson = spot.toJSON()
         
         const reviews = await Review.count({
@@ -147,77 +211,28 @@ router.get('/:spotId', async(req, res) => {
         
         spotJson.avgStarRating = (totalStars / reviews)
         
-        if(!spot) res.status(404).json({
-            "message": "Spot couldn't be found"
-        })
         
         return res.status(200).json(spotJson)
     })
     // create a new post 
-    router.post('/',requireAuth, validateSpot, async(req, res) => {
-        
-    const {address, city, state, country, lat, lng, name, description, price} = req.body
-       
-    
-    
-        const newSpot = await Spot.create({
-            ownerId: req.user.id,
-            address,
-            city, 
-            state,
-            country,
-            lat,
-            lng,
-            name, 
-            description,
-            price
-        })
-        // console.log(newSpot);
-        return res.status(201).json(newSpot)
-    })
 
 
     // ADD IMAGE TO A SPOT BASED ON ID
-    router.post('/:spotId/images', requireAuth, async (req, res) => {
-        let currUser = req.user.id
-        const spot = await Spot.findByPk(req.params.spotId)
-
-        if(!spot) {
-            res.status(404).json({
-                "message": "Spot couldn't be found"
-              })
-        }
-
-        if(currUser !== spot.ownerId) {
-            res.status(403).json({"message": "forbidden"})
-        }
-
-
-        const {url, preview} = req.body
-
-        const newSpotImage = await SpotImage.create({
-            spotId: req.params.spotId,
-            url,
-            preview
-        })
-
-
-        res.status(200).json({
-            id: newSpotImage.id,
-            url: newSpotImage.url,
-            preview: newSpotImage.preview
-        })
-})
 
 // EDIT A SPOT BASED ON SPOT ID
 router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
     
+    const currUser = req.user.id
     const spot = await Spot.findByPk(req.params.spotId)
     
     if(!spot) {
         res.status(404).json({
             "message": "Spot couldn't be found"
           })
+    }
+
+    if(currUser !== spot.ownerId) {
+        res.status(403).json({"message": "forbidden"})
     }
     
     const {address, city, state, country, lat, lng, name, description, price, createdAt,
@@ -254,7 +269,7 @@ router.delete('/:spotId', requireAuth, async(req, res) => {
     }
     
     if(currUser !== spot.ownerId) {
-        res.status(403).json({"message": "You cannot delete this spot"})
+        res.status(403).json({"message": "forbidden"})
     }
 
     await spot.destroy()
@@ -263,11 +278,6 @@ router.delete('/:spotId', requireAuth, async(req, res) => {
       })
 
 })
-
-
-
-
-
 
 
 
