@@ -38,7 +38,7 @@ const validateBookingDates = [
     handleValidationErrors
 ];
 
-
+// GET BOOKINGS FROM CURRENT USER
 router.get('/current', requireAuth, async (req, res) => {
     const userId = req.user.id // we get the current user
     
