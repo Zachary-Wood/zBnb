@@ -277,6 +277,104 @@ router.get('/:spotId', async(req, res) => {
         return res.status(200).json({Bookings: bookings}) // send a response of whatever condition is hit
 }) 
 
+
+// CREATE A BOOKING BASED ON SPOT ID
+
+router.post('/:spotId/bookings', requireAuth, async(req, res) => {
+    const {startDate, endDate} = req.body
+
+    const spot = await Spot.findByPk(req.params.spotId)
+
+    if(!spot) {
+        return res.status(404).json({
+            "message": "Spot couldn't be found"
+          })
+    }
+
+    if(spot.ownerId === req.user.id) {
+        return res.status(400).json({
+            message: "You own this spot!"
+        })
+    }
+
+    const checkStartDate = await Booking.findOne({
+        where: {
+            spotId: spot.id,
+            startDate: { [Op.lte]: startDate},
+            endDate: { [Op.gte]: startDate}
+        }
+    })
+
+    if(checkStartDate) {
+        const error = new Error("Sorry, this spot is already booked for the specified dates")
+
+        error.error = {
+            "startDate": "Start date conflicts with an existing booking"
+        };
+        
+        return res.status(403).json({
+            message: error.message,
+            errors: error.error
+        })
+    }
+
+    const checkEndDate = await Booking.findOne({
+        where: {
+            spotId: spot.id,
+            startDate: { [Op.lte]: endDate},
+            endDate: { [Op.gte]: endDate}
+        }
+    })
+
+    if(checkEndDate) {
+        const error = new Error("Sorry, this spot is already booked for the specified dates")
+
+        error.error = {
+            "endDate": "End date conflicts with an existing booking"
+        };
+        
+        return res.status(403).json({
+            message: error.message,
+            errors: error.error
+        })
+    }
+    
+    const checkStartAndEnd = await Booking.findOne({
+        
+            where: {
+                spotId: spot.id,
+                startDate: { [Op.gte]: startDate},
+                endDate: { [Op.lte]: endDate}
+            }
+        
+    })
+
+    if(checkStartAndEnd) {
+        const error = new Error("Sorry, this spot is already booked for the specified dates")
+
+        error.error = {
+            "startDate": "Dates conflict with an existing booking"
+        };
+        
+        return res.status(403).json({
+            message: error.message,
+            errors: error.error
+        })
+    }
+
+    const newBooking = await Booking.create({
+        spotId: spot.id,
+        userId: req.user.id,
+        startDate,
+        endDate
+    })
+
+    console.log('new bookings', newBooking);
+    return res.status(200).json(newBooking)
+    
+    
+}) 
+
 // EDIT A SPOT BASED ON SPOT ID
 router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
     
@@ -407,5 +505,7 @@ router.post('/:spotId/reviews', requireAuth, validateReview, handleValidationErr
     })
     res.json(newUserReview)
 })
+
+//CREATE A NEW BOOKING BASED ON SPOT ID 
 
 module.exports = router

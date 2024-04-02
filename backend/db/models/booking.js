@@ -45,29 +45,12 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           isDate: true,
-          isAfter: '2024-02-23',
-          // async isStartDateValid(value) {
-          //   await Booking.findOne({
-          //       where: {
-          //         spotId: this.spotId,
-          //         endDate: {
-          //           [Op.gt]: value
-          //         }
-          //       }
-          //     }.then((existingBooking) => {
-          //       if(existingBooking) {
-          //         throw new Error('Someone has a booking on this date')
-          //       }
-          //     })
-          //   )
-          // }
         } 
     },
     endDate: {
       type: DataTypes.DATEONLY,
       validate: {
         isDate: true,
-        isAfter: this.startDate
         }
       }
   }, {
