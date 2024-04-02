@@ -7,37 +7,6 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router()
 
-
-const validateBookingDates = [
-    check('startDate')
-    .exists({checkFalsy: true})
-    .custom((day, {req}) => {
-        let startingDate = new Date(day)
-        let currentDate = new Date()
-
-        if(startingDate < currentDate) {
-            return false
-        }
-        return true
-    })
-    .withMessage('Start Date Cannot be before the todays date'),
-    
-
-    check('endDate')
-    .exists({checkFalsy: true})
-    .custom((day, {req}) => {
-        let startingDate = new Date(req.body.startingDate)
-        let endDate = new Date(day)
-
-        if(endDate <= startingDate) {
-            return false
-        }
-        return true
-    })
-    .withMessage('Enddate cannot be before start date'),
-    handleValidationErrors
-];
-
 // GET BOOKINGS FROM CURRENT USER
 router.get('/current', requireAuth, async (req, res) => {
     const userId = req.user.id // we get the current user
@@ -96,7 +65,8 @@ router.get('/current', requireAuth, async (req, res) => {
     return res.status(200).json({ Bookings: listOfBookings})
 })
 
-router.put('/:bookingId', requireAuth, async(req, res) => {
+// EDIT A BOOKING 
+router.put('/:bookingId', requireAuth, handleValidationErrors, async(req, res) => {
     const {startDate, endDate} = req.body;
 
     const bookingToUpdate = await Booking.findByPk(req.params.bookingId)
@@ -160,7 +130,7 @@ router.put('/:bookingId', requireAuth, async(req, res) => {
 
     if(checkEndDate) {
         const error = new Error(
-            '"Sorry, this spot is already booked for the specified dates"'
+            "Sorry, this spot is already booked for the specified dates"
         )
         error.error = {
             endDate: "End date conflicts with an existing booking"
@@ -202,6 +172,38 @@ router.put('/:bookingId', requireAuth, async(req, res) => {
 
     return res.status(200).res.json(updatedBooking)
 
+})
+
+
+router.delete('/:bookingId', requireAuth, async(req, res) => {
+    const deletedBooking = await Booking.findByPk(req.params.bookingId)
+
+    if(!deletedBooking) {
+        return res.status(404).json({
+            "message": "Booking couldn't be found"
+          })
+    }
+
+    if(deletedBooking.userId !== req.user.id) {
+        return res.status(403).json({
+            message: 'You do not have authorization to delete this booking'
+        })
+    }
+
+    const currentDate = new Date()
+    if(currentDate >= deletedBooking.startDate) {
+        return res.status(404).json({
+            
+                "message": "Bookings that have been started can't be deleted"
+              
+        })
+    }
+
+    await deletedBooking.destroy()
+
+    return res.status(200).json({
+        "message": "Successfully deleted"
+      })
 })
 
 
