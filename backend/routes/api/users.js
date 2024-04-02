@@ -51,7 +51,7 @@ const validateSignup = [
       where: {username: username}
     })
     if(existingUsername) {
-      res.status(400).json({
+      res.status(500).json({
         message: "User already exists",
         errors: {
           username: "User with that username already exists",
@@ -72,7 +72,7 @@ const validateEmail = async (req, res, next) => {
     where: {email: email}
   })
   if(existingEmail) {
-    res.status(400).json({
+    res.status(500).json({
       
         message: "User already exists",
         errors: {
@@ -88,11 +88,7 @@ const validateEmail = async (req, res, next) => {
 
 
 
-
-
-
-
-  router.post('/', validateSignup, validateUsername, validateEmail,
+router.post('/', validateSignup, validateUsername, validateEmail,
     async (req, res) => {
       const { firstName, lastName, email, password, username } = req.body;
       const hashedPassword = bcrypt.hashSync(password);
