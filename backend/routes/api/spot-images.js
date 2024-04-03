@@ -22,7 +22,7 @@ router.delete('/:imageId', requireAuth, async (req, res) => {
     
     if(imageJson.Spot.ownerId !== req.user.id) {
         return res.status(403).json({
-            message: 'You do not have authorization to delete this booking'
+            message: 'You do not have authorization to delete this image'
         })
     }
 

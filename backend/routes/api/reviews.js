@@ -10,14 +10,15 @@ const router = express.Router();
 
 
 const validateReview = [
-    check('stars')
-        .exists({ checkFalsy: true })
-        .isInt({ min: 1, max: 5 })
-        .withMessage('Stars must be an integer from 1 to 5'),
     check('review')
         .exists({ checkFalsy: true })
         .isLength({ min: 1 })
         .withMessage('Review text is required'),
+    check('stars')
+        .exists({ checkFalsy: true })
+        .isInt({ min: 1, max: 5 })
+        .withMessage('Stars must be an integer from 1 to 5'),
+        handleValidationErrors
 ];
 
 
@@ -82,19 +83,19 @@ router.post('/:reviewId/images', requireAuth, async(req, res) => {
 
     const review = await Review.findByPk(reviewId)
 
-
-    if(review.userId !== req.user.id) {
-
-        return res.status(403).json({
-            message: "Forbidden",
-        });
-    }
-
     if(!review) {
         res.status(404).json({
             "message": "Review couldn't be found"
           })
     }
+
+    if(review.userId !== req.user.id) {
+
+        return res.status(403).json({
+            message: "Forbidden you did not create this review",
+        });
+    }
+
 
     const maxImages = 10
     const imageCount = await ReviewImage.count({where: {reviewId: reviewId}})
@@ -132,7 +133,7 @@ router.put('/:reviewId', requireAuth, validateReview,  async(req, res) => {
     if(findReview.userId !== req.user.id) {
 
         return res.status(403).json({
-            message: "Forbidden",
+            message: "Forbidden you did not create this review",
         });
     }
 
@@ -159,7 +160,7 @@ router.delete('/:reviewId', requireAuth, async(req, res) => {
 
     if(review.userId !== req.user.id) {
         return res.status(403).json({
-            message: "Forbidden",
+            message: "Forbidden you did not create this review",
         });
     }
 

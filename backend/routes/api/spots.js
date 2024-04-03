@@ -51,24 +51,6 @@ const validateReview = [
         .withMessage('Review text is required'),
 ];
 
-const handleQueryValidationErrors = (req, res, next) => {
-    const errors = validationResult(req);
-  
-    if (!errors.isEmpty()) {
-      let errorResponse = {
-        message: "Bad Request",
-        errors: {},
-      };
-  
-      errors.array().forEach((error) => {
-        errorResponse.errors[error.param] = error.msg;
-      });
-  
-      return res.status(400).json(errorResponse);
-    }
-  
-    next();
-  };
 
 const checkQuery = [
     query("page")
@@ -106,13 +88,42 @@ const checkQuery = [
       handleValidationErrors
   ];
 
+  const validateDates = [
+    check('startDate')
+        .exists({ checkFalsy: true })
+        .custom((value, { req }) => {
+            let startDateValidate = new Date(value)
+            let currentDate = new Date()
+
+            if (startDateValidate < currentDate) {
+                return false
+            }
+            return true
+        })
+        .withMessage('startDate cannot be in the past'),
+    check('endDate')
+        .exists({ checkFalsy: true })
+        .custom((value, { req }) => {
+            let startDateValidate = new Date(req.body.startDate)
+            let endDateValidate = new Date(value)
+
+            if (endDateValidate <= startDateValidate) {
+                return false
+            }
+            return true
+        })
+        .withMessage('endDate cannot be on or before startDate'),
+    handleValidationErrors
+];
+
 
 // GET ALL SPOTS
-router.get('/', checkQuery, handleQueryValidationErrors, async(req,res) => {
+router.get('/', checkQuery, async(req,res) => {
     let {page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice} = req.body
 
     page = parseInt(page) || 1;
     size = parseInt(size) || 20;
+
 
 
     if(page > 10) page = 10
@@ -219,7 +230,7 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
     }
 
     if(currUser !== spot.ownerId) {
-        res.status(403).json({"message": "forbidden"})
+        res.status(403).json({"message": "forbidden you do not own this spot"})
     }
 
 
@@ -368,15 +379,19 @@ router.get('/:spotId', async(req, res) => {
 
         let bookings // variable to be assigned to if there are logged in or not
         if(user === parseInt(req.params.spotId)) { // check if the user = spots owner
-            bookings = await Booking.findAll({ // we get an array of all bookings 
+            let items = await Booking.findAll({ // we get an array of all bookings 
                 where: {spotId: spotId},
-                include: {
+                include: [
+                    {
                     model: User,
                     attributes: ['id', 'firstName', 'lastName'],
-                },
+                    }
+            ],
                 
             }) 
-         bookings = bookings.map((booking) => ({ // we iterate through our array to get each booking
+            console.log(items);
+         
+            bookings = items.map((booking) => ({ // we iterate through our array to get each booking
                 
                     User: {
                         id: booking.User.id,
@@ -394,18 +409,19 @@ router.get('/:spotId', async(req, res) => {
                }))
 
         } else {
+            // not logged in user
             bookings = await Booking.findAll({
                 where: {spotId: spotId},
                 attributes: ['spotId', 'startDate', 'endDate']
             })
+            console.log(bookings);
         }
         return res.status(200).json({Bookings: bookings}) // send a response of whatever condition is hit
 }) 
 
 
 // CREATE A BOOKING BASED ON SPOT ID
-
-router.post('/:spotId/bookings', requireAuth, async(req, res) => {
+router.post('/:spotId/bookings', requireAuth, validateDates, async(req, res) => {
     const {startDate, endDate} = req.body
 
     const spot = await Spot.findByPk(req.params.spotId)
@@ -624,11 +640,11 @@ router.post('/:spotId/reviews', requireAuth, validateReview, handleValidationErr
 
     const newUserReview = await Review.create({
         userId: userId,
-        spotId: spotId,
+        spotId: Number(spotId),
         review: review,
         stars: stars
     })
-    res.json(newUserReview)
+    res.status(201).json(newUserReview)
 })
 
 //CREATE A NEW BOOKING BASED ON SPOT ID 
