@@ -22,38 +22,47 @@ const validateReview = [
 
 
 // GET ALL REVIEWS BY THE CURRENT USER
-router.get('/current', requireAuth, async(req, res) => {
-    const userId = req.user.id
+router.get('/current', requireAuth, async (req, res) => {
+        const userId = req.user.id;
 
-    const reviews = await Review.findAll({
-        where: {userId},
-        include: [
-           {
-            model: User,
-            attributes: ['id', 'firstName', "lastName"]
-           },
-
-           {
-            model: Spot, 
-            attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country',
-            'lat','lng', 'name', 'price'],
-
-            include: {
-                model: SpotImage,
-                where: {preview: true},
-                attributes: ['url']
+        const reviews = await Review.findAll({
+            where: { userId },
+            include: [
+                {
+                    model: User,
+                    attributes: ['id', 'firstName', 'lastName']
+                },
+                {
+                    model: Spot,
+                    attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price'],
+                    include: [{
+                            model: SpotImage,
+                            attributes: ['url']
+                             }]
+                },
+                {
+                    model: ReviewImage,
+                    attributes: ['id', 'url']
+                }
+            ]
+        });
+        
+        const reviewList = reviews.map((review) => {
+            const reviewJSON = review.toJSON();
+            if (!reviewJSON.Spot.SpotImages.length) {
+              reviewJSON.Spot.previewImage = "No preview image found";
+            } else {
+              reviewJSON.Spot.previewImage = reviewJSON.Spot.SpotImages[0].url;
             }
-           },
+      
+            delete reviewJSON.Spot.SpotImages;
+            return reviewJSON;
+          });
+    
+    res.json({ Reviews: reviewList });
+});
 
-           {
-            model: ReviewImage,
-            attributes: ['id', 'url']
-           }
-        ]
-    })
 
-    res.json({Reviews: reviews})
-})
 
 // ADD A REVIEW IMAGE BASED ON ID
 router.post('/:reviewId/images', requireAuth, async(req, res) => {
