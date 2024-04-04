@@ -43,7 +43,7 @@ const validateLogin = [
           const err = new Error('Login failed');
           err.status = 401;
           err.title = 'Login failed';
-          err.errors = { credential: 'Invaled Credentials' };
+          err.errors = { credential: 'Invalid Credentials' };
           return next(err);
         }
     

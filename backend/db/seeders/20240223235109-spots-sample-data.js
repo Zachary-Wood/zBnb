@@ -29,8 +29,8 @@ module.exports = {
         city: 'Destin',
         state: "Florida",
         country: 'United States',
-        lat: 23456,
-        lng: 98765,
+        lat: 38.19011,
+        lng: -112.14,
         name: 'Beach House',
         description: 'Here in destin come stay at this beautiful and luxurious beach house. All amendities are included and enjoy the private pool and hot tub right on the beautiful destin beach',
         price: 650
@@ -41,8 +41,8 @@ module.exports = {
         city: 'Destin',
         state: "Florida",
         country: 'United States',
-        lat: 78917,
-        lng: 39812,
+        lat: 78.917,
+        lng: -105.812,
         name: 'Shore House',
         description: 'Here in destin come stay at this wonderful fishing spot. The airbnb comes with a boat and crew to take you out to do whatever you would like in the beautiful destin ocean',
         price: 350
@@ -53,8 +53,8 @@ module.exports = {
         city: 'Destin',
         state: "Florida",
         country: 'United States',
-        lat: 38013,
-        lng: 58898,
+        lat: 38.013,
+        lng: -1158898,
         name: 'Gatorland',
         description: 'Here in destin come stay at this wonderful fishing spot. If you love reptiles this is the place for you. This location is a 2 minute walk away from reptile world which is a great and fun spot to see reptiles and aligators',
         price: 175

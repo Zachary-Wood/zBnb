@@ -21,10 +21,10 @@ const validateSpot = [
         .notEmpty()
         .withMessage('Country is required'),
     check('lat')
-        .isDecimal({ min: -90, max: 90 })
+        .isFloat({ min: -90, max: 90 })
         .withMessage('Latitude must be within -90 and 90'),
     check('lng')
-        .isDecimal({ min: -180, max: 180 })
+        .isFloat({ min: -180, max: 180 })
         .withMessage('Longitude must be within -180 and 180'),
     check('name')
         .isLength({ max: 50 })
@@ -33,7 +33,7 @@ const validateSpot = [
         .notEmpty()
         .withMessage('Description is required'),
     check('price')
-        .isDecimal({ min: 0 })
+        .isFloat({ min: 0 })
         .withMessage('Price per day must be a positive number'),
     handleValidationErrors
 ];
@@ -268,7 +268,12 @@ router.get('/current', requireAuth, async(req,res) => {
         const totalStars = await Review.sum('stars', { // add up all the stars that match the spot id 
             where: {spotId: spot.id}
         })
-        spot.avgStarRating = (totalStars / reviews) // get average of stars on a spot
+        
+        if(reviews > 0) {
+            spot.avgStarRating = (totalStars / reviews) // get average of stars on a spot
+         } else {
+            spot.avgStarRating = 'No ratings yet'
+         }
         
         if(spot.SpotImage) { // if theres an image we provide the url if not we send back no image provided
             spot.SpotImage.PreviewImage.url
@@ -611,7 +616,7 @@ router.get('/:spotId/reviews', async (req, res) => {
 // POST A NEW REVIEW BASED ON SPOT ID
 router.post('/:spotId/reviews', requireAuth, validateReview, handleValidationErrors, async(req, res) => {
     const userId = req.user.id
-    const spotId = req.params.spotId
+    const spotId = parseInt(req.params.spotId)
     const {review, stars} = req.body
 
     const spot = await Spot.findByPk(spotId)
@@ -638,7 +643,7 @@ router.post('/:spotId/reviews', requireAuth, validateReview, handleValidationErr
 
     const newUserReview = await Review.create({
         userId: userId,
-        spotId: Number(spotId),
+        spotId: spotId,
         review: review,
         stars: stars
     })

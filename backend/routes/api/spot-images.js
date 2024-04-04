@@ -6,9 +6,13 @@ const router = express.Router()
 
 // DELETE A REVIEW IMAGE
 router.delete('/:imageId', requireAuth, async (req, res) => {
+
+    const imageId = req.params.imageId
     
-    const imageToBeDeleted = await SpotImage.findByPk(req.params.imageId , {
-        include: { model: Spot }
+    const imageToBeDeleted = await SpotImage.findOne({
+        where: {
+            id: imageId
+        }
     })
 
     if(!imageToBeDeleted) {
@@ -17,10 +21,13 @@ router.delete('/:imageId', requireAuth, async (req, res) => {
           })
     }
 
-
-    const imageJson = imageToBeDeleted.toJSON()
+    const spotsOwner = await Spot.findOne({
+        where: {
+            id: imageToBeDeleted.spotId
+        }
+    }) 
     
-    if(imageJson.Spot.ownerId !== req.user.id) {
+    if(spotsOwner.ownerId !== req.user.id) {
         return res.status(403).json({
             message: 'You do not have authorization to delete this image'
         })
@@ -28,8 +35,7 @@ router.delete('/:imageId', requireAuth, async (req, res) => {
 
     await imageToBeDeleted.destroy()
 
-   
-    return res.status(200).json({
+   return res.status(200).json({
         "message": "Successfully deleted"
       })
 
@@ -38,9 +44,6 @@ router.delete('/:imageId', requireAuth, async (req, res) => {
 })
 
 
-//test router setup
-router.get("/test", function (req, res) {
-    res.send("endpoint hit");
-  });
+
 
 module.exports = router
