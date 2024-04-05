@@ -6,7 +6,6 @@ const router = express.Router()
 
 // DELETE A REVIEW IMAGE
 router.delete('/:imageId', requireAuth, async (req, res) => {
-    const user = req.params.user
     const imageId = req.params.imageId
     
     const imageToBeDeleted = await SpotImage.findOne({
@@ -27,7 +26,7 @@ router.delete('/:imageId', requireAuth, async (req, res) => {
         }
     }) 
     
-    if(spot.ownerId !== user.id) {
+    if(spot.ownerId !== req.user.id) {
         return res.status(403).json({
             message: 'You do not have authorization to delete this image'
         })

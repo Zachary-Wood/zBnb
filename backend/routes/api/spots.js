@@ -60,7 +60,7 @@ const checkQuery = [
     query("size")
       .optional()
       .isInt({ min: 1 })
-      .withMessage("Page must be greater than or equal to 1"),
+      .withMessage("Size must be greater than or equal to 1"),
     query("maxLat")
       .optional()
       .isFloat({ min: -90, max: 90 })
@@ -131,7 +131,7 @@ const checkQuery = [
 
 // GET ALL SPOTS
 router.get('/', checkQuery, async(req,res) => {
-    let {page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice} = req.body // grab all pagination items from body to be used later 
+    let {page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice} = req.query // grab all pagination items from body to be used later 
 
     page = parseInt(page) || 1; 
     size = parseInt(size) || 20;
@@ -377,8 +377,9 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
 // EDIT A SPOT BASED ON SPOT ID
 router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
     
-    const currUser = req.user.id
-    const spot = await Spot.findByPk(req.params.spotId)
+    
+    const spotId = req.params.spotId
+    const spot = await Spot.findByPk(spotId)
     
     if(!spot) {
         res.status(404).json({
@@ -386,7 +387,7 @@ router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
           })
     }
 
-    if(currUser !== spot.ownerId) {
+    if(req.user.id !== spot.ownerId) {
         res.status(403).json({"message": "forbidden"})
     }
     
@@ -408,7 +409,25 @@ router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
         updatedAt
     })
 
-    res.json(updatedSpot)
+    
+    const formattedPayload = {
+        id: updatedSpot.id,
+        ownerId: updatedSpot.ownerId,
+        address: updatedSpot.address,
+        city: updatedSpot.city,
+        state: updatedSpot.state,
+        country: updatedSpot.country,
+        lat: updatedSpot.lat,
+        lng: updatedSpot.lng,
+        name: updatedSpot.name,
+        description: updatedSpot.description,
+        price: +updatedSpot.price,
+        createdAt: formatAmericanDate(updatedSpot.createdAt),
+        updatedAt: formatAmericanDate(updatedSpot.updatedAt)
+    }
+
+
+    return res.status(200).res.json(formattedPayload)
 })
 
 // DELETE A SPOT
@@ -599,8 +618,8 @@ if(!spot) {  // needs to be a valid spot
 }
 
 if(spot.ownerId === req.user.id) { // needs to match up with ownerId and user.id
-    return res.status(400).json({
-        message: "You own this spot!"
+    return res.status(403).json({
+        message: "You cannot book your own spot!"
     })
 }
 
