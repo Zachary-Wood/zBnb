@@ -343,6 +343,8 @@ const {address, city, state, country, lat, lng, name, description, price} = req.
 // ADD AN IMAGE TO SPOT BASED ON ID
 router.post('/:spotId/images', requireAuth, async (req, res) => {
     let currUser = req.user.id // we get the current user 
+
+
     const spot = await Spot.findByPk(req.params.spotId) // find the spot that is provided wit the id
 
     if(!spot) { // if there is no id that matches throw error 
@@ -412,21 +414,24 @@ router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
 // DELETE A SPOT
 router.delete('/:spotId', requireAuth, async(req, res) => {
 
-    const currUser = req.user.id
-    const spot = await Spot.findByPk(req.params.spotId)
+    const user = req.user
+    const spotId = req.params.spotId
+   
+    const deletedSpot = await Spot.findByPk(spotId)
     
-    if(!spot) {
-        res.status(404).json({
+    if(!deletedSpot) {
+        return res.status(404).json({
             "message": "Spot couldn't be found"
           })
     }
     
-    if(currUser !== spot.ownerId) {
-        res.status(403).json({"message": "forbidden you do not own this spot"})
+    if(deletedSpot.ownerId !== user.id) {
+       return res.status(403).json({"message": "forbidden you do not own this spot"})
     }
 
-    await spot.destroy()
-    res.status(200).json({
+    await deletedSpot.destroy()
+    
+    return res.status(200).json({
         "message": "Successfully deleted"
       })
 
