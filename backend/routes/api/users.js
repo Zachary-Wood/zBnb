@@ -17,12 +17,12 @@ const validateSignup = [
       .exists({ checkFalsy: true })
       .isAlpha()
       .isLength({ min: 4 , max: 30})
-      .withMessage('Please provide a first name with at least 3 characters'),
+      .withMessage('First name is required with at least 3 characters'),
     check('lastName')
       .exists({ checkFalsy: true })
       .isAlpha()
       .isLength({ min: 4 , max: 30})
-      .withMessage('Please provide a last name with at least 3 characters'),
+      .withMessage('Last name is required with at least 3 characters'),
     check('email')
       .exists({ checkFalsy: true })
       .isEmail()
@@ -30,7 +30,7 @@ const validateSignup = [
     check('username')
       .exists({ checkFalsy: true })
       .isLength({ min: 4 })
-      .withMessage('Please provide a username with at least 4 characters.'),
+      .withMessage('Username is required with at least 4 characters.'),
     check('username')
       .not()
       .isEmail()

@@ -196,10 +196,35 @@ router.get('/', checkQuery, async(req,res) => {
         }
         
     }
-    let result = {Spots: listOfSpots} // all items in the list to be displayed 
-    result.page = +page, // add page attribute to query 
-    result.size = size // add size attribute to query 
-    res.status(200).json(result) // success code and send back result object
+
+    const payload = listOfSpots.map((spot) => {
+        return {
+        
+            
+            id: spot.id,
+            ownerId: spot.ownerId,
+            address: spot.address,
+            city: spot.city,
+            state: spot.state,
+            country: spot.country,
+            lat: +spot.lat,
+            lng: +spot.lng, 
+            name: spot.name,
+            description: spot.description,
+            price: +spot.price,
+            createdAt: formatAmericanDate(spot.createdAt),
+            updatedAt: formatAmericanDate(spot.updatedAt),
+            avgRating: spot.avgRating || 0,
+            previewImage: spot.previewImage || 'No image Provided'
+            
+        }
+    })
+    let finalPayload = {Spots: payload}
+
+    finalPayload.page = +page
+    finalPayload.size = size
+    
+    res.status(200).json(finalPayload) // success code and send back result object
 });
 
 // GET ALL CURRENT USERS
@@ -245,8 +270,31 @@ router.get('/current', requireAuth, async(req,res) => {
         }
         
     }
+
+
+    const payload = listOfSpots.map((spot) => {
+        return {
+            id: spot.id,
+            ownerId: spot.ownerId,
+            address: spot.address,
+            city: spot.city,
+            state: spot.state,
+            country: spot.country,
+            lat: +spot.lat,
+            lng: +spot.lng, 
+            name: spot.name,
+            description: spot.description,
+            price: +spot.price,
+            createdAt: formatAmericanDate(spot.createdAt),
+            updatedAt: formatAmericanDate(spot.updatedAt),
+            avgRating: spot.avgRating || 0,
+            previewImage: spot.previewImage || 'No image provided'
+            
+        }
+    })
+    let finalPayload = {Spots: payload}
     
-    res.status(200).json({Spots: listOfSpots}) 
+    res.status(200).json(finalPayload) 
 });
 
 
@@ -291,13 +339,13 @@ router.get('/:spotId', async(req, res) => {
             city: spot.city,
             state: spot.state,
             country: spot.country,
-            lat: spot.lat,
-            lng: spot.lng, 
+            lat: +spot.lat,
+            lng: +spot.lng, 
             name: spot.name,
             description: spot.description,
-            price: spot.price,
-            createdAt: spot.createdAt,
-            updatedAt: spot.updatedAt,
+            price: +spot.price,
+            createdAt: formatAmericanDate(spot.createdAt),
+            updatedAt: formatAmericanDate(spot.updatedAt),
             numReviews,
             avgStarRating,
             SpotImages: 
@@ -335,7 +383,26 @@ const {address, city, state, country, lat, lng, name, description, price} = req.
         price
     })
     // console.log(newSpot);
-    return res.status(201).json(newSpot) 
+
+    const payload = {
+        
+            
+        id: newSpot.id,
+        ownerId: newSpot.ownerId,
+        address: newSpot.address,
+        city: newSpot.city,
+        state: newSpot.state,
+        country: newSpot.country,
+        lat: +newSpot.lat,
+        lng: +newSpot.lng, 
+        name: newSpot.name,
+        description: newSpot.description,
+        price: +newSpot.price,
+        createdAt: formatAmericanDate(newSpot.createdAt),
+        updatedAt: formatAmericanDate(newSpot.updatedAt),
+        
+    }
+    return res.status(201).json(payload) 
 })
 
 
@@ -388,7 +455,7 @@ router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
     }
 
     if(req.user.id !== spot.ownerId) {
-        res.status(403).json({"message": "forbidden"})
+        res.status(403).json({"message": "forbidden you do not own this spot"})
     }
     
     const {address, city, state, country, lat, lng, name, description, price, createdAt,
@@ -461,8 +528,11 @@ router.delete('/:spotId', requireAuth, async(req, res) => {
 // GET REVIEWS BASED ON A SPOT ID
 router.get('/:spotId/reviews', async (req, res) => {
     const spotId = req.params.spotId
+    const {createdAt, updatedAt} = req.body
     
     const spot = await Spot.findByPk(spotId)
+
+    const spotOwner = await User.findByPk(spot.ownerId)
     
     if(!spot) {
         return res.status(404).json({
@@ -486,7 +556,10 @@ router.get('/:spotId/reviews', async (req, res) => {
             }
         ]
     })
-    res.json({Reviews: reviews})
+
+   
+    
+    return res.status(200).json({Reviews: reviews})
 })
 
 

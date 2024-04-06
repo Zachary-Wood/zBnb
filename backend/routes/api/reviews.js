@@ -68,7 +68,10 @@ router.get('/current', requireAuth, async (req, res) => {
             delete reviewJSON.Spot.SpotImages;
             return reviewJSON;
           });
-    
+
+
+          
+          
     res.json({ Reviews: reviewList });
 });
 
