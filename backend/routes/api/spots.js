@@ -427,7 +427,7 @@ router.put('/:spotId', requireAuth, validateSpot, async (req, res) => {
     }
 
 
-    return res.status(200).res.json(formattedPayload)
+    return res.status(200).json(formattedPayload)
 })
 
 // DELETE A SPOT
