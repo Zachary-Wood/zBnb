@@ -528,11 +528,10 @@ router.delete('/:spotId', requireAuth, async(req, res) => {
 // GET REVIEWS BASED ON A SPOT ID
 router.get('/:spotId/reviews', async (req, res) => {
     const spotId = req.params.spotId
-    const {createdAt, updatedAt} = req.body
     
     const spot = await Spot.findByPk(spotId)
 
-    const spotOwner = await User.findByPk(spot.ownerId)
+   
     
     if(!spot) {
         return res.status(404).json({
