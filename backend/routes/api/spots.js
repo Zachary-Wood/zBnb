@@ -59,8 +59,8 @@ const checkQuery = [
       .withMessage("Page must be greater than or equal to 1"),
     query("size")
       .optional()
-      .isInt({ min: 1 })
-      .withMessage("Size must be greater than or equal to 1"),
+      .isInt({ min: 1 , max: 20})
+      .withMessage("Size must be greater than or equal to 1 and smaller than 20"),
     query("maxLat")
       .optional()
       .isFloat({ min: -90, max: 90 })
@@ -409,17 +409,17 @@ const {address, city, state, country, lat, lng, name, description, price} = req.
 
 // ADD AN IMAGE TO SPOT BASED ON ID
 router.post('/:spotId/images', requireAuth, async (req, res) => {
-    let currUser = req.user.id // we get the current user 
+    let currUser = req.user // we get the current user 
 
 
     const spot = await Spot.findByPk(req.params.spotId) // find the spot that is provided wit the id
 
     if(!spot) { // if there is no id that matches throw error 
-        res.status(404).json({ "message": "Spot couldn't be found"})
+       return res.status(404).json({ "message": "Spot couldn't be found"})
     }
 
-    if(currUser !== spot.ownerId) { // user needs to match the spot ownerd id and throw error if not 
-        res.status(403).json({"message": "forbidden you do not own this spot"})
+    if(currUser.id !== spot.ownerId) { // user needs to match the spot ownerd id and throw error if not 
+        return res.status(403).json({"message": "forbidden you do not own this spot"})
     }
 
     const {url, preview} = req.body // we grab the two attributes we need to create a new spot image 
