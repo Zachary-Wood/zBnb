@@ -40,7 +40,7 @@ module.exports = {
       {
         spotId: 3,
         userId: 3,
-        review: 'This place was such a great place for kids. My kids loved it! You got to see so many cool reptiles and the property was beautiful!',
+        review: 'This place was such a great place for kids. My kids loved it!',
         stars: 5
       }
 

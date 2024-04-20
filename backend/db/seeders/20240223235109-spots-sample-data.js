@@ -33,31 +33,31 @@ module.exports = {
         lng: -112.14,
         name: 'Beach House',
         description: 'Here in destin come stay at this beautiful and luxurious beach house. All amendities are included and enjoy the private pool and hot tub right on the beautiful destin beach',
-        price: 650
+        price: 850
       },
       {
         ownerId: 2,
-        address: 'Eglin Beach Park',
-        city: 'Destin',
+        address: 'Eglin Beach Resort',
+        city: 'Miami',
         state: "Florida",
         country: 'United States',
         lat: 78.917,
         lng: -105.812,
-        name: 'Shore House',
-        description: 'Here in destin come stay at this wonderful fishing spot. The airbnb comes with a boat and crew to take you out to do whatever you would like in the beautiful destin ocean',
-        price: 350
+        name: 'Luxurious Beach House',
+        description: 'Here in destin come stay at this wonderful beach house. With great views that you will dream about for the rest of your lives!',
+        price: 650
       },
       {
         ownerId: 3,
         address: '20001 Emerald Coast Pkwy',
-        city: 'Destin',
-        state: "Florida",
+        city: 'Ponce',
+        state: "Puerto Rico",
         country: 'United States',
         lat: 38.013,
         lng: -1158898,
-        name: 'Gatorland',
-        description: 'Here in destin come stay at this wonderful fishing spot. If you love reptiles this is the place for you. This location is a 2 minute walk away from reptile world which is a great and fun spot to see reptiles and aligators',
-        price: 175
+        name: 'Beach Villa',
+        description: 'Come stay at your dream vacation spot. Enjoy the pool all the ocean with all inclusive and just enjoy beautiful spot in puerto rico',
+        price: 950
       },
     ])
   },
