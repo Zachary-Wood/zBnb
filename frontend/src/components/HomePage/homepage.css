@@ -1,0 +1,32 @@
+* {
+    background-color: lightgray;
+    padding: 0px;
+    margin: 0px;
+}
+
+.spots-con {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 15px;
+    padding: 10px;
+    margin: 30px;
+    justify-content: space-between;
+    border: 2px solid red;
+      
+}
+
+.spot-info-con {
+    width: calc(30% - 20px); 
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+    box-shadow: 5px 5px 5px lightslategrey;
+}
+
+.spot-info-con:hover {
+    box-shadow: 15px 10px 10px lightslategrey;
+}
+

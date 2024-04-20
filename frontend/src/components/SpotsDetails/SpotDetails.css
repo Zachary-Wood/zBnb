@@ -1,0 +1,19 @@
+.spot-con-info {
+    border: none;
+    box-shadow: none;
+}
+
+
+.selected-spot-con {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    gap: 30px;
+    
+}
+
+.spot-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
