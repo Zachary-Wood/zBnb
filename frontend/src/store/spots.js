@@ -5,6 +5,7 @@ import { csrfFetch } from "./csrf";
 // VARIABLES FOR ACTIONS
 const GETALLSPOTS = 'spots/GET_ALL_SPOTS'
 const GET_SPOT_BY_ID = 'spots/GET_SPOTS_ID'
+const CREATE_SPOT = 'spots/CREATE_SPOT'
 
 
 
@@ -16,6 +17,12 @@ const getSpotsAll = (spots) => ({
 
 const getSpotById = (spots) => ({
     type: GET_SPOT_BY_ID,
+    spots
+})
+
+
+const createASpot = (spots) => ({
+    type: CREATE_SPOT,
     spots
 })
 
@@ -38,6 +45,44 @@ export const getSpotDetailsThunk = (spotId) => async (dispatch) => {
     return res
 }
 
+export const createASpotThunk = (spot, images) => async dispatch => {
+
+    const imageLinks = Object.values(images)
+    // console.log(imageLinks);
+
+    const res = await csrfFetch('/api/spots', {
+        method: 'POST',
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify(spot)
+    })
+
+    if(res !== 201) {
+        throw new Error('Sorry for the inconvenience this spot could not be created')
+    } else {
+
+        const newSpot = await res.json()
+
+
+        const spotImagesAdded = imageLinks.forEach(url => {
+
+            csrfFetch(`/api/${newSpot.id}/images`, {
+                method: 'POST',
+                headers: {"Content-Type":"application/json"},
+                body: JSON.stringify({url: url, preview: true})
+            })
+        })
+
+
+
+
+        await dispatch(createASpot(newSpot, spotImagesAdded))
+        return newSpot
+    }
+
+    
+
+}
+
 
 
 
@@ -56,6 +101,11 @@ function spotsReducer(state = {}, action){
             const newState = {...state, [action.spots.id]: action.spots}
             return newState
             
+        }
+        case CREATE_SPOT: {
+            const newState = {...state}
+            newState[action.spots.id] = action.spots
+            return newState
         }
         default: 
             return state

@@ -11,12 +11,12 @@ function Navigation({ isLoaded }) {
 
   const sessionLinks = sessionUser ?
     (
-      <li>
+      <li className='login-con'>
         <ProfileButton user={sessionUser} />
       </li>
     ) : (
       <>
-        <li>
+        <li >
           <OpenModalButton
             buttonText="Log In"
             modalComponent={<LoginFormModal />}
@@ -34,12 +34,15 @@ function Navigation({ isLoaded }) {
     );
 
   return (
+    <div className='home-link-con'>
+
     <ul>
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
       {isLoaded && sessionLinks}
     </ul>
+    </div>
   );
 }
 

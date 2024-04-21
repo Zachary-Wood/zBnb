@@ -13,8 +13,15 @@
     padding: 10px;
     margin: 30px;
     justify-content: space-between;
-    border: 2px solid red;
       
+}
+
+.spot-image {
+    width: 450px;
+    height: 300px;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 50px;
 }
 
 .spot-info-con {
@@ -23,10 +30,28 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 50px;
-    box-shadow: 5px 5px 5px lightslategrey;
+    border-radius: 15px;
 }
 
 .spot-info-con:hover {
     box-shadow: 15px 10px 10px lightslategrey;
+
 }
+
+.spot-text-con {
+    padding-left: 25px;
+    margin: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.spot-location {
+    color: black;
+    text-decoration: none;
+
+}
+
+
 

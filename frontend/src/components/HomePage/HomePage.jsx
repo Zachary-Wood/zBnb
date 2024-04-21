@@ -21,7 +21,6 @@ const HomePage = () => {
 
   return (
     <section>
-        <h1>Home Page</h1>
         <div className="spots-con">
             { data && data.map((spot) => (
 
@@ -29,10 +28,8 @@ const HomePage = () => {
                 <NavLink to={`/spots/${spot.id}`}>
                 <img className="spot-image" src={spot.previewImage}/>
                 <div className="spot-text-con">
-                    <p className="spot-location">{`${spot.city} ${spot.country}`}</p>
+                    <h3 className="spot-location">{`${spot.city} ${spot.country}`}</h3>
                     <p className="spot-price">{`${spot.price} per night.`}</p>
-                    <h1>Test</h1>
-
                     <div className="spot-rating-con">
                         <p className="spots-stars">{`${spot.avgRating || 'No ratings'}`}</p>
                     </div>

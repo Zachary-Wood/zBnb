@@ -3,6 +3,15 @@
     box-shadow: none;
 }
 
+a {
+    text-decoration: none;
+    background-color: #A0c0D6;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 200;
+    color: #DE7456;
+    
+  }
+
 
 .selected-spot-con {
     display: flex;
@@ -17,3 +26,41 @@
     flex-direction: column;
     gap: 15px;
 }
+
+.booking-button {
+    background-color: #DE7456;
+    height: 50px;
+    width: 200px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 15px;
+}
+
+.images-con {
+    display: flex;
+    padding: 50px;
+    gap: 5px;
+}
+
+.main-image {
+    height: 500px;
+    width: 650px;
+}
+
+.left-images-con {
+    display: flex;
+    flex-direction: column;
+}
+
+.other-spot-images {
+    width: 250px;
+    height: 250px;
+}
+
+.right-images-con {
+    display: flex;
+    flex-direction: column;
+}
+
