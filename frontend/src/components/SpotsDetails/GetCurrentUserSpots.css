@@ -10,13 +10,39 @@
     width: 300px;
     border-radius: 10px;
     color: white;
+
     
 }
 
-.delete-button {
+.update-button:hover {
+    cursor: pointer;
+}
+
+
+.yes-btn {
     background-color: #DE7456;
     height: 50px;
     width: 300px;
     border-radius: 10px;
     color: white;
 }
+.no-btn {
+    background-color: #DE7456;
+    height: 50px;
+    width: 300px;
+    border-radius: 10px;
+    color: white;
+}
+
+.delete-button-container button {
+    background-color: #DE7456;
+    height: 50px;
+    width: 300px;
+    border-radius: 10px;
+    color: white;
+}
+
+.delete-button-container button:hover {
+    cursor: pointer;
+}
+

@@ -7,7 +7,7 @@ const GETALLSPOTS = 'spots/GET_ALL_SPOTS'
 const GET_SPOT_BY_ID = 'spots/GET_SPOTS_ID'
 const CREATE_SPOT = 'spots/CREATE_SPOT'
 const UPDATE_USER_SPOT = 'spots/UPDATE_USER_SPOT'
-
+const DELETE_YOUR_SPOT = 'spots/DELETE_YOUR_SPOT'
 const GET_CURRENT_USERS_SPOTS = 'spots/GET_CURRENT_USERS_SPOTS'
 
 
@@ -33,6 +33,13 @@ const updateASpot = (spots) => ({
     type: UPDATE_USER_SPOT,
     spots
 })
+
+const deleteASpot = (spotId) => ({
+    type: DELETE_YOUR_SPOT,
+    spotId
+})
+
+
 
 
 
@@ -111,6 +118,15 @@ export const createASpotThunk = (spot, images) => async dispatch => {
     }
 
 
+    export const deleteASpotThunk = (spotId) => async dispatch => {
+        const res = await csrfFetch(`/api/spots/${spotId}`, {
+            method: 'DELETE'
+        }
+    )
+    await dispatch(deleteASpot(spotId))
+    return res.json('Spot has been deleted')
+    }
+
 
     export const getAllCurrentUsersSpotsThunk = () => async dispatch => {
         const res = await csrfFetch('/api/spots/current')
@@ -153,13 +169,18 @@ function spotsReducer(state = {}, action){
             newState[action.spots.id] = action.spots
             return newState
         }
+        case DELETE_YOUR_SPOT: {
+            const newState = {...state}
+            delete newState[action.spotId]
+            return newState
+        }
 
         case GET_CURRENT_USERS_SPOTS: {
             const newState = {}
             action.spots.Spots.forEach((spot) => {
                 newState[spot.id] = spot
             })
-            console.log(newState);
+            // console.log(newState);
             return newState
 
         }

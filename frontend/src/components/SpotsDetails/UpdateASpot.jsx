@@ -21,8 +21,8 @@ const UpdateASpot = () => {
     const [address, setAddress] = useState(spotToUpdate?.address)
     const [city, setCity] = useState(spotToUpdate?.city)
     const [state, setState] = useState(spotToUpdate?.state)
-    const [lat, setLat] = useState(spotToUpdate?.lat)
-    const [lng, setLng] = useState(spotToUpdate?.lng)
+    // const [lat, setLat] = useState(spotToUpdate?.lat)
+    // const [lng, setLng] = useState(spotToUpdate?.lng)
     const [name, setName] = useState(spotToUpdate?.name)
     const [description, setDescription] = useState(spotToUpdate?.description)
     const [price, setPrice] = useState(spotToUpdate?.price)
@@ -33,8 +33,6 @@ const UpdateASpot = () => {
 
     useEffect(() => {
 
-        setLat(90) 
-        setLng(180)
 
         const errorsObj = {}
 
@@ -59,6 +57,8 @@ const UpdateASpot = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
+
+
         const updatedUserSpot = {
           ownerId: currentUser.id,
           address,
@@ -68,8 +68,8 @@ const UpdateASpot = () => {
           name,
           description,
           price,
-          lat,
-          lng
+          lat: 89,
+          lng: 179
         }
 
 
@@ -153,7 +153,7 @@ const UpdateASpot = () => {
           </label>
           </div>
 
-          <div className="lat-lng-con">
+          {/* <div className="lat-lng-con">
 
           <label>
             Latitude
@@ -176,7 +176,7 @@ const UpdateASpot = () => {
             placeholder="Longitude"
           />
           </label>
-          </div>
+          </div> */}
 
           <div className="spot-description-post-con">
             <h3 className="spot-heading">Describe your place to guests</h3>

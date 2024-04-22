@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { getAllCurrentUsersSpotsThunk } from "../../store/spots"
 import { NavLink } from "react-router-dom"
+import OpenModalButton from '../OpenModalButton/OpenModalButton'
 import './GetCurrentUserSpots.css'
+import DeleteASpot from "./DeleteASpot"
 
 
 const GetCurrentUserSpots = () => {
@@ -59,8 +61,7 @@ const GetCurrentUserSpots = () => {
                 </div>
 
                 <div className="delete-button-container">
-                <button className="delete-button">Delete Spot</button>
-                
+                <OpenModalButton buttonText={'Delete'} modalComponent={<DeleteASpot spotId={+spot.id} />}/>
                 </div>
                 
                 
