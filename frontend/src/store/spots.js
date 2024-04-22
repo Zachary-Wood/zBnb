@@ -59,7 +59,7 @@ export const createASpotThunk = (spot, images) => async dispatch => {
    
 
         const newSpot = await res.json()
-
+        // console.log(newSpot)
 
         const spotImagesAdded = imageLinks.forEach(url => {
 
@@ -69,6 +69,8 @@ export const createASpotThunk = (spot, images) => async dispatch => {
                 body: JSON.stringify({url: url, preview: true})
             })
         })
+
+        // console.log(newSpot, spotImagesAdded);
         
         await dispatch(createASpot(newSpot, spotImagesAdded))
         return newSpot
