@@ -11,6 +11,14 @@ function LoginFormModal() {
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
+  const demoUserLogIn = async () => {
+    const response = await dispatch(sessionActions.login({"credential": 'Demo-lition', "password": 'password'}))
+    if(response.ok){
+      closeModal();
+    }
+  }
+ 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors({});
@@ -25,31 +33,43 @@ function LoginFormModal() {
   };
 
   return (
-    <>
-      <h1>Log In</h1>
+    <div className='login-box'>
+      <h1 className='h1-con'>Log In</h1>
       <form onSubmit={handleSubmit}>
+        <div className='login-inputs'>
+
+        
         <label>
-          Username or Email
           <input
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
             required
+            placeholder='Username or Email'
+            className='input'
           />
         </label>
         <label>
-          Password
-          <input
+          <input 
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            placeholder='Password'
+            className='input'
           />
         </label>
+
         {errors.credential && <p>{errors.credential}</p>}
-        <button type="submit">Log In</button>
+        </div>
+        <div className='btn-con'>
+        <button className='submit-btn' type="submit">Log In</button>
+
+        <button type='demoUser' className='demo-btn' onClick={demoUserLogIn}>Login as Demo User</button>
+        </div>
+        
       </form>
-    </>
+    </div>
   );
 }
 

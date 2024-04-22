@@ -38,13 +38,14 @@
 
 }
 
-.spot-text-con {
+.spot-landing-con {
     padding-left: 25px;
     margin: 15px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     gap: 15px;
+    background-color: #A0C0D6;
 }
 
 .spot-location {

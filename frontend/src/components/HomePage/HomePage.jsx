@@ -24,14 +24,14 @@ const HomePage = () => {
         <div className="spots-con">
             { data && data.map((spot) => (
 
-                <div key={spot.id} className="spot-info-con">
+                <div key={spot.id} className="spot-landing-con">
                 <NavLink to={`/spots/${spot.id}`}>
                 <img className="spot-image" src={spot.previewImage}/>
-                <div className="spot-text-con">
-                    <h3 className="spot-location">{`${spot.city} ${spot.country}`}</h3>
-                    <p className="spot-price">{`${spot.price} per night.`}</p>
+                <div className="spot-location-info-con">
+                    <h3 className="spot-location">{`${spot.city}, ${spot.state}`}</h3>
+                    <p className="spot-price">{`$${spot.price} per night.`}</p>
                     <div className="spot-rating-con">
-                        <p className="spots-stars">{`${spot.avgRating || 'No ratings'}`}</p>
+                        <p className="spots-stars">{`${spot.avgRating || 'NEW'}`}</p>
                     </div>
 
                 </div>

@@ -1,0 +1,61 @@
+.login-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 350px;
+    width: 500px;
+    background-color: #A0C0D6;
+}
+
+#modal {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.login-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding-top: 30px;
+    background-color: #A0C0D6;
+
+}
+
+.h1-con {
+    background-color: #A0C0D6;
+    color: #43597D;
+}
+.input {
+    width: 300px;
+    height: 25px;
+    padding: 5px;
+}
+
+.btn-con {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 30px;
+    background-color: #A0C0D6;
+    gap: 15px;
+}
+
+.submit-btn {
+    width: 250px;
+    height: 50px;
+    background-color: #DE7456;
+    color: white;
+    border: 2px solid #43597D;
+    border-radius: 10px;
+
+}
+
+.demo-btn {
+    width: 150px;
+    height: 50px;
+    background-color: #DE7456;
+    color: white;
+    border: 2px solid #43597D;
+    border-radius: 10px;
+}

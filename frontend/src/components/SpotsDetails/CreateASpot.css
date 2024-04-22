@@ -1,0 +1,194 @@
+.form-con {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+    padding-top: 30px;
+}
+
+.spot-text-con {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding-top: 15px;
+
+}
+
+
+.country-address-con {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.errors-con {
+    display: flex;
+    gap: 15px;
+}
+
+
+.country-input {
+    display: flex;
+    width: 650px;
+    height: 20px;
+    gap: 15px;
+    padding: 3px;
+}
+.errors-mess {
+    color: red;
+}
+
+.address-input {
+    display: flex;
+    width: 650px;
+    height: 20px;
+    gap: 15px;
+    padding: 3px;
+}
+
+.city-state-con {
+    display: flex;
+    gap: 15px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.city-input {
+    display: flex;
+    width: 350px;
+    height: 20px;
+    gap: 15px;
+    padding: 3px;
+}
+
+.state-input {
+    display: flex;
+    width: 275px;
+    height: 20px;
+    gap: 15px;
+    padding: 3px;
+}
+
+.lat-input {
+    display: flex;
+    width: 300px;
+    height: 20px;
+    gap: 15px;
+    padding: 3px;
+}
+
+.lng-input {
+
+        display: flex;
+        width: 300px;
+        height: 20px;
+        gap: 15px;
+        padding: 3px;
+    
+}
+
+.lat-lng-con {
+    display: flex;
+    gap: 40px;
+}
+
+.spot-description-post-con {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+}
+
+.desc-input {
+    display: flex;
+    width: 650px;
+    height: 150px;
+    gap: 15px;
+    padding: 3px;
+}
+
+.spot-title-post-con {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.name-input {
+    display: flex;
+    width: 650px;
+    height: 20px;
+    gap: 15px;
+    padding: 3px;
+}
+
+.spot-price-post-con {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.price-input {
+    display: flex;
+    width: 650px;
+    height: 20px;
+    gap: 15px;
+    padding: 3px;
+}
+
+.spot-images-post-con {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.image-input {
+    display: flex;
+    width: 650px;
+    height: 20px;
+    gap: 15px;
+    padding: 3px;
+}
+
+.image-input-con {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-top: 15px;
+}
+
+
+.post-submit-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.submit-button {
+    background-color: #DE7456;
+    height: 50px;
+    width: 300px;
+    border-radius: 10px;
+    color: white;
+    
+}
+
+.submit-button:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 15px #43597D;
+}

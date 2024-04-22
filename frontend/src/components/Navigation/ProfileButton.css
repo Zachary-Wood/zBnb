@@ -1,21 +1,11 @@
-/* .profile-dropdown {
-    display: none;
-    position: absolute;
-    background-color: lightcyan;
-    min-width: 200px;
-    height: 75px;
-    right: 27px;
-    z-index: 1;
-    border: 2px solid red
-} */
 
 .drop-downbox {
     height: 75px;
     width: 145px;
     border: 2px solid #DE7456;
     position: absolute;
-    right: -127px;
-    top: 25px;
+    right: -2px;
+    top: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,5 +19,42 @@
     font-weight: 200;
     font-family: "Bebas Neue", sans-serif;
 }
+
+.profile-dropdown {
+    height: 175px;
+    width: 145px;
+    border: 2px solid #DE7456;
+    position: absolute;
+    right: 26px;
+    top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 5px;
+}
+
+.profile-dropdown li {
+    padding-top: 5px;
+    display: flex;
+    padding-top: 5px;
+    list-style: none;
+    font-size: 20px;
+    font-weight: 200;
+    font-family: "Bebas Neue", sans-serif;
+}
+
+.logout-btn-con {
+    padding-bottom: 15px;
+}
+
+.logout-btn {
+    background-color: #43597D;
+    height: 25px;
+    width: 100px;
+    color: white
+}
+
 
 

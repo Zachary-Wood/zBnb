@@ -56,32 +56,27 @@ export const createASpotThunk = (spot, images) => async dispatch => {
         body: JSON.stringify(spot)
     })
 
-    if(res !== 201) {
-        throw new Error('Sorry for the inconvenience this spot could not be created')
-    } else {
+   
 
         const newSpot = await res.json()
 
 
         const spotImagesAdded = imageLinks.forEach(url => {
 
-            csrfFetch(`/api/${newSpot.id}/images`, {
+            csrfFetch(`/api/spots/${newSpot.id}/images`, {
                 method: 'POST',
                 headers: {"Content-Type":"application/json"},
                 body: JSON.stringify({url: url, preview: true})
             })
         })
-
-
-
-
+        
         await dispatch(createASpot(newSpot, spotImagesAdded))
         return newSpot
     }
 
     
 
-}
+
 
 
 
