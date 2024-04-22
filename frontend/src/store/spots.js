@@ -6,6 +6,9 @@ import { csrfFetch } from "./csrf";
 const GETALLSPOTS = 'spots/GET_ALL_SPOTS'
 const GET_SPOT_BY_ID = 'spots/GET_SPOTS_ID'
 const CREATE_SPOT = 'spots/CREATE_SPOT'
+const UPDATE_USER_SPOT = 'spots/UPDATE_USER_SPOT'
+
+const GET_CURRENT_USERS_SPOTS = 'spots/GET_CURRENT_USERS_SPOTS'
 
 
 
@@ -25,6 +28,23 @@ const createASpot = (spots) => ({
     type: CREATE_SPOT,
     spots
 })
+
+const updateASpot = (spots) => ({
+    type: UPDATE_USER_SPOT,
+    spots
+})
+
+
+
+const getAllCurrentUsersSpots = (spots) => ({
+    type: GET_CURRENT_USERS_SPOTS,
+    spots
+})
+
+
+
+
+
 
 // thunks to dispatch
 export const getAllSpotsThunk = () => async (dispatch) => {
@@ -76,6 +96,30 @@ export const createASpotThunk = (spot, images) => async dispatch => {
         return newSpot
     }
 
+    export const updateASpotThunk = (spot, spotId) => async dispatch => {
+        const res = await csrfFetch(`/api/spots/${spotId}`, {
+            method: 'PUT',
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify(spot)
+        })
+
+        const dataJSON = await res.json()
+        // console.log(dataJSON);
+
+         await dispatch(updateASpot(dataJSON))
+         return dataJSON
+    }
+
+
+
+    export const getAllCurrentUsersSpotsThunk = () => async dispatch => {
+        const res = await csrfFetch('/api/spots/current')
+        const dataJSON = await res.json()
+
+        await dispatch(getAllCurrentUsersSpots(dataJSON))
+        return res
+    }
+
     
 
 
@@ -104,6 +148,22 @@ function spotsReducer(state = {}, action){
             newState[action.spots.id] = action.spots
             return newState
         }
+        case UPDATE_USER_SPOT: {
+            const newState = {...state}
+            newState[action.spots.id] = action.spots
+            return newState
+        }
+
+        case GET_CURRENT_USERS_SPOTS: {
+            const newState = {}
+            action.spots.Spots.forEach((spot) => {
+                newState[spot.id] = spot
+            })
+            console.log(newState);
+            return newState
+
+        }
+
         default: 
             return state
     }

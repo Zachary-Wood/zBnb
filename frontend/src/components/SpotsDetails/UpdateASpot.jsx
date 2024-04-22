@@ -1,37 +1,35 @@
-import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
-import { useDispatch } from "react-redux"
-import { createASpotThunk } from "../../store/spots"
-import { getSpotDetailsThunk } from "../../store/spots"
+import { useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import './UpdateASpot.css'
+import { useSelector } from 'react-redux'
+import { useState } from 'react'
+import { useEffect } from 'react'
+import { updateASpotThunk } from '../../store/spots'
+import { getSpotDetailsThunk } from '../../store/spots'
+import { useDispatch } from 'react-redux'
 
-import './CreateASpot.css'
+const UpdateASpot = () => {
 
-
-
-const SignUpForm = () => {
-    
-  const dispatch = useDispatch()
+    const dispatch = useDispatch()
     const navigate = useNavigate()
-    const currentUser = useSelector(state => state.session.user) 
-    // console.log(currentUser, 'current user');
-    const [address, setAddress] = useState('')
-    const [city, setCity] = useState('')
-    const [state, setState] = useState('')
-    const [country, setCountry] = useState('')
-    const [lat, setLat] = useState(89)
-    const [lng, setLng] = useState(179)
-    const [name, setName] = useState('')
-    const [description, setDescription] = useState('')
-    const [price, setPrice] = useState('')
-    const [mainImage, setMainImage] = useState('')
-    const [spotImageOne, setSpotImageOne] = useState('')
-    const [spotImageTwo, setSpotImageTwo] = useState('')
-    const [spotImageThree, setSpotImageThree] = useState('')
-    const [spotImageFour, setSpotImageFour] = useState('')
+    const {spotId} = useParams()
+    // console.log(spotId, 'spotId');
+    const spotToUpdate = useSelector(state => state.spots[spotId])
+    // console.log(spotToUpdate);
+    const currentUser = useSelector(state => state.session.user)
+    const [country, setCountry] = useState(spotToUpdate?.country)
+    const [address, setAddress] = useState(spotToUpdate?.address)
+    const [city, setCity] = useState(spotToUpdate?.city)
+    const [state, setState] = useState(spotToUpdate?.state)
+    const [lat, setLat] = useState(spotToUpdate?.lat)
+    const [lng, setLng] = useState(spotToUpdate?.lng)
+    const [name, setName] = useState(spotToUpdate?.name)
+    const [description, setDescription] = useState(spotToUpdate?.description)
+    const [price, setPrice] = useState(spotToUpdate?.price)
+
+
 
     const [errors, setErrors] = useState({})
-
 
     useEffect(() => {
 
@@ -52,16 +50,16 @@ const SignUpForm = () => {
         if(!name) errorsObj.name = 'Please provide a valid spot name'
         if(!description) errorsObj.description = 'Please provide a descriptive message for your place with at least 30 characters'
         if(!price) errorsObj.price = 'Please provide a price that is a number'
-        if(!mainImage) errorsObj.mainImage = 'Spot must have at least a main image'
 
         setErrors(errorsObj)
 
-    } ,[address, city, state, country, name, description, price, mainImage, currentUser, navigate])
-  
+    } ,[address, city, state, country, name, description, price, currentUser, navigate])
+
+
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const newSpot = {
+        const updatedUserSpot = {
           ownerId: currentUser.id,
           address,
           city,
@@ -74,67 +72,58 @@ const SignUpForm = () => {
           lng
         }
 
-        const newImages = {
-          mainImage,
-          spotImageOne,
-          spotImageTwo,
-          spotImageThree,
-          spotImageFour
-        }
 
-        const createdSpot = await dispatch(createASpotThunk(newSpot, newImages))
-        dispatch(getSpotDetailsThunk(createdSpot))
-        navigate(`/spots/${createdSpot.id}`)
+        const updatedSpot = await dispatch(updateASpotThunk(updatedUserSpot, spotId))
+        dispatch(getSpotDetailsThunk(updatedUserSpot))
+        navigate(`/spots/${updatedSpot.id}`)
 
 
 
     }
-  
-  
-    return (
-    <div className="form-con">
-      <h1>Create a new spot!</h1>
+
+  return (
+    <div className='update-form-con'>
+        <h1>Update Your Spot</h1>
         <div className="spot-text-con">
           <h3 className="place-heading">{`Where's your place located?`}</h3>
           <p className="place-text">Guests will only get your exact address once they book a reservation.</p>
         </div>
 
         <form onSubmit={handleSubmit}>
-          <div className="country-address-con">
+        <div className="country-address-con">
             
-          <label>
+            <label>
+              <div className="errors-con">
+              Country {errors.country && <p className="errors-mess">{errors.country}</p>}
+              </div>
+              
+              
+              <input
+              type="text"
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              className="country-input"
+              placeholder="Country"
+            />
+            </label>
+  
+            <label>
+  
             <div className="errors-con">
-            Country {errors.country && <p className="errors-mess">{errors.country}</p>}
+              Street Address
+              {errors.address && <p className="errors-mess">{errors.address}</p>}
+              </div>
+              <input
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              className="address-input"
+              placeholder="Address"
+            />
+            </label>
             </div>
-            
-            
-            <input
-            type="text"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
-            className="country-input"
-            placeholder="Country"
-          />
-          </label>
 
-          <label>
-
-          <div className="errors-con">
-            Street Address
-            {errors.address && <p className="errors-mess">{errors.address}</p>}
-            </div>
-            <input
-            type="text"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            className="address-input"
-            placeholder="Address"
-          />
-          </label>
-          </div>
-
-
-      <div className="city-state-con">
+            <div className="city-state-con">
           <label>
           <div className="errors-con">
             City
@@ -248,90 +237,25 @@ const SignUpForm = () => {
           
 
 
-          <div className="spot-images-post-con">
-            <h3 className="spot-heading-images">Liven up your spot with photos</h3>
-            <p className="spot-price"> Submit a link to at least one photo to publish your spot.
-            </p>
-         </div>
-         
-
-
-         
-
-         <label>
-            
-            <input
-            type="text"
-            value={mainImage}
-            onChange={(e) => setMainImage(e.target.value)}
-            className="image-input"
-            placeholder="Preview Image URL"
-          />
-          </label>
-          {errors.mainImage && <p className="errors-mess">{errors.mainImage}</p>}
-
-          <div className="image-input-con">
-          <label>
-            
-            <input
-            type="text"
-            value={spotImageOne}
-            onChange={(e) => setSpotImageOne(e.target.value)}
-            className="image-input"
-            placeholder="Image URL"
-          />
-          </label>
-
-          <label>
-            
-            <input
-            type="text"
-            value={spotImageTwo}
-            onChange={(e) => setSpotImageTwo(e.target.value)}
-            className="image-input"
-            placeholder="Image URL"
-          />
-          </label>
-
-          <label>
-            
-            <input
-            type="text"
-            value={spotImageThree}
-            onChange={(e) => setSpotImageThree(e.target.value)}
-            className="image-input"
-            placeholder="Image URL"
-          />
-          </label>
-
-          <label>
-            
-            <input
-            type="text"
-            value={spotImageFour}
-            onChange={(e) => setSpotImageFour(e.target.value)}
-            className="image-input"
-            placeholder="Image URL"
-          />
-          </label>
-          </div>
           <div className="post-submit-container">
           <button className="submit-button" 
           type="submit"
           onClick={(e) => e.console.log('button was clicked')}
           disabled={Object.values(errors).length > 0}
 
-          >Create a Spot</button>
+          >Update Your Spot</button>
           </div>
-        
-      
-      </form>
+            
 
+
+
+
+
+        </form>
     </div>
   )
 }
 
 
 
-
-export default SignUpForm
+export default UpdateASpot

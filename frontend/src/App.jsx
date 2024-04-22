@@ -9,7 +9,8 @@ import { Modal } from './context/Modal';
 import HomePage from './components/HomePage/HomePage';
 import SpotDetailsPage from './components/SpotsDetails/SpotDetailsPage';
 import SignUpForm from './components/SpotsDetails/CreateASpot';
-
+import UpdateASpot from './components/SpotsDetails/UpdateASpot';
+import GetCurrentUserSpots from './components/SpotsDetails/GetCurrentUserSpots';
 function Layout() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -48,11 +49,20 @@ const router = createBrowserRouter([
       // {
       //   path: 'signup',
       //   element: <SignupFormPage />
-      // }
+      // },
 
       {
         path: '/spots/new',
         element: <SignUpForm/>
+      },
+      {
+        path: `/spots/current`,
+        element: <GetCurrentUserSpots/>
+      },
+       
+      {
+        path: `/spots/:spotId/edit`,
+        element: <UpdateASpot/>
       }
     ]
   }

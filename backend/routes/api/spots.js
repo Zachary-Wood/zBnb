@@ -258,18 +258,28 @@ router.get('/current', requireAuth, async(req,res) => {
         })
         
         if(reviews > 0) {
-            spot.avgStarRating = (totalStars / reviews) // get average of stars on a spot
+            spot.avgRating = (totalStars / reviews) // get average of stars on a spot
          } else {
-            spot.avgStarRating = 'No ratings yet'
+            spot.avgRating = 'NEW'
          }
         
-        if(spot.SpotImage) { // if theres an image we provide the url if not we send back no image provided
-            spot.SpotImage.PreviewImage.url
-        } else {
-            spot.PreviewImage = 'No image provided'
+         let preview = await SpotImage.findOne({
+            where: {
+                spotId: spot.id,
+                preview: true
+            }
+        })
+
+        if (preview) {
+            spot.previewImage = preview.url;
         }
+        else {
+            spot.previewImage = 'No Images';
+        }
+    
         
     }
+
 
 
     const payload = listOfSpots.map((spot) => {

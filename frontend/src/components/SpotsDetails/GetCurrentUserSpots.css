@@ -1,0 +1,22 @@
+.update-button-container {
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.update-button {
+    background-color: #DE7456;
+    height: 50px;
+    width: 300px;
+    border-radius: 10px;
+    color: white;
+    
+}
+
+.delete-button {
+    background-color: #DE7456;
+    height: 50px;
+    width: 300px;
+    border-radius: 10px;
+    color: white;
+}
