@@ -35,8 +35,8 @@ const SignUpForm = () => {
 
     useEffect(() => {
 
-        setLat(90) 
-        setLng(180)
+        setLat(89) 
+        setLng(179)
 
         const errorsObj = {}
 

@@ -8,6 +8,17 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
 
+//   const formatAmericanDate = (date) => {
+//     const formattedDate = new Date(date);
+//     const month = formattedDate.getMonth() + 1;
+//     const day = formattedDate.getDate();
+//     const year = formattedDate.getFullYear();
+//     const hours = formattedDate.getHours();
+//     const minutes = formattedDate.getMinutes();
+//     const sec = formattedDate.getSeconds();
+//     return `${month}/${day}/${year} ${hours}:${minutes}:${sec}`;
+//   };
+
 
 const validateReview = [
     check('review')
@@ -69,8 +80,6 @@ router.get('/current', requireAuth, async (req, res) => {
             return reviewJSON;
           });
 
-
-          
           
     res.json({ Reviews: reviewList });
 });

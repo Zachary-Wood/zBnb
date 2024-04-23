@@ -64,3 +64,17 @@ a {
     flex-direction: column;
 }
 
+.spot-details-review-header button {
+    background-color: #DE7456;
+    height: 50px;
+    width: 200px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 15px;
+}
+.spot-details-review-header button:hover {
+    cursor: pointer;
+}
+

@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom"
 import OpenModalButton from '../OpenModalButton/OpenModalButton'
 import './GetCurrentUserSpots.css'
 import DeleteASpot from "./DeleteASpot"
+// import GetAllReviewsForSpot from "./GetAllReviewsForSpot"
 
 
 const GetCurrentUserSpots = () => {
@@ -65,12 +66,12 @@ const GetCurrentUserSpots = () => {
                 </div>
                 
                 
-                
-                </div>
 
-                
+               </div>
 
               ))}
+
+            
 
             
         </div>
