@@ -4,6 +4,9 @@ import { getAllReviewsFromSpotThunk } from "../../store/reviews";
 import { useParams } from "react-router-dom";
 import CreateAReview from "../Reviews/CreateAReview";
 import OpenModalButton from '../OpenModalButton/OpenModalButton'
+import { useState } from "react";
+import { DeleteAReview } from "../Reviews/DeleteAReview";
+// import { FaStar } from "react-icons/fa";
 
 
 
@@ -12,45 +15,63 @@ import OpenModalButton from '../OpenModalButton/OpenModalButton'
 const GetAllReviewsForSpot = ({spot}) => {
     const dispatch = useDispatch()
     const {spotId} = useParams()
+    const [showButton, setShowButton] = useState(true);
     let allReviews = useSelector(state => state.reviews)
     // console.log('reviews', allReviews)
 
 
     allReviews = Object.values(allReviews)
-
+    console.log('reviews', allReviews);
+    // console.log(reviews);
+    const currentUser = useSelector(state => state.session.user?.id)
+    const spotsOwner = useSelector(state => state.spots?.[spotId].ownerId)
+    // console.log(currentUser);
+    const alreadyReviewed = allReviews.find(review => review.userId === currentUser)
+    
     console.log(allReviews);
     useEffect(() => {
         dispatch(getAllReviewsFromSpotThunk(spotId))
+        setShowButton(true)
     },[spotId, dispatch])
 
-   
+    useEffect(() => {
+        if (currentUser && allReviews.find(review => review.userId === currentUser)) {
+            setShowButton(false); 
+        }
+    }, [allReviews, currentUser]);
 
 
-    
 
-
-
-
-
-  return (
+return (
     <>
     <div className='spot-details-review-header'>
-                        <OpenModalButton
-                            className="create-review-button"
-                            modalComponent={<CreateAReview spot={spot} />}
-                            buttonText="Submit Review"
-                        />
-                    </div>
+        {showButton && currentUser && currentUser !== spotsOwner && !alreadyReviewed && (
+
+            <OpenModalButton
+                className="create-review-button"
+                modalComponent={<CreateAReview spot={spot} />}
+                buttonText="Create Review"
+            />
+        )}
+
+                        
+            </div>
+
+        {!allReviews.length && currentUser && currentUser !== spotsOwner?.Owner?.id &&
+                <p>Be the first to post a review</p>
+            }
     
     <div className="reviews-con">
         { allReviews.map(review => 
 
             <div key={review.id} className="reviews-text-con">
-                <h3 className="review-name">{`${review?.User.firstName}`}</h3>
+                <h3 className="review-name">{`${review?.User?.firstName}`}</h3>
                 <p className="date-created">{`${`${new Date(review.createdAt).getMonth()}-${new Date(review.createdAt).getDate()}-${new Date(review.createdAt).getFullYear()} `  }`}</p>
                 <p className="review-description">{`${review.review}`}</p>
 
 
+                
+                {review.userId === currentUser && <DeleteAReview reviewId={review.id} spotId={spotId} />}
             </div>
         )}
         

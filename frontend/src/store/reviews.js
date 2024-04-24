@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf"
 
 const GET_ALL_REVIEWS = 'reviews/GET_ALL_REVIEWS_FROM_SPOT'
 const CREATE_A_REVIEW = 'reviews/CREATE_A_REVIEW'
+const DELETE_A_REVIEW = 'reviews/DELETE_A_REVIEW'
 
 
 
@@ -18,6 +19,11 @@ const createAReview = (review) => ({
 
 })
 
+const deleteAReview = (reviewId) => ({
+    type: DELETE_A_REVIEW,
+    reviewId
+})
+
 
 //thunks to dispatch
 
@@ -26,11 +32,11 @@ export const getAllReviewsFromSpotThunk = (spotId) => async (dispatch) => {
     const res = await csrfFetch(`/api/spots/${spotId}/reviews`)
     const dataJSON = await res.json()
     dispatch(getAllReviews(dataJSON));
-    return res
+    return dataJSON
 }
 
 
-export const postANewReviewForASpotThunk = (spotId, review) => async (dispatch) => {
+export const postANewReviewForASpotThunk = (review, spotId) => async (dispatch) => {
     const res = await csrfFetch(`/api/spots/${spotId}/reviews` , {
         method: 'POST', 
         headers: {"Content-Type":"application/json"},
@@ -44,8 +50,17 @@ export const postANewReviewForASpotThunk = (spotId, review) => async (dispatch) 
     
 }
 
-//REVIEWS REDUCER
+export const deleteAReviewByIdThunk = (reviewId) => async dispatch => {
+    await csrfFetch(`/api/reviews/${reviewId}`,{
 
+        method: 'DELETE'
+    }
+)
+    await dispatch(deleteAReview(reviewId))
+
+}
+
+//REVIEWS REDUCER
 
 function reviewsReducer(state = {}, action) {
     switch(action.type){
@@ -56,11 +71,17 @@ function reviewsReducer(state = {}, action) {
             action.reviews.Reviews.forEach((review) => {
                 newState[review.id] = review
             })
+            console.log('new', newState);
             return newState
         }
         case CREATE_A_REVIEW: {
+            const newState = {...state, [action.review.id]: action.review}
+            // newState[action.review.id] = action.review
+            return newState
+        }
+        case DELETE_A_REVIEW: {
             const newState = {...state}
-            newState[action.reviews.id] = action.reviews
+            delete newState[action.reviewId]
             return newState
         }
 

@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getSpotDetailsThunk } from '../../store/spots';
 import GetAllReviewsForSpot from './GetAllReviewsForSpot';
+import { FaStar } from "react-icons/fa";
 
 const SpotDetailsPage = () => {
 
@@ -23,6 +24,18 @@ const SpotDetailsPage = () => {
     useEffect(() => {
         dispatch(getSpotDetailsThunk(spotId))
     }, [spotId, dispatch])
+
+    const reviews = () => {
+        if (!clickedSpot) return null;
+
+        const { numReviews, avgStarRating } = clickedSpot;
+
+        if (numReviews > 1 && avgStarRating) return `${avgStarRating} · ${numReviews} reviews`;
+        else if (numReviews === 1 && avgStarRating)  return `${avgStarRating} · ${numReviews} review`;
+        else return 'New';
+        
+    };
+
     
 
 
@@ -71,6 +84,14 @@ const SpotDetailsPage = () => {
             </div>
             
             <div className="review-con">
+            <h1>
+                <i className="">
+                    <FaStar/>
+                </i>
+                
+                <p className=""> {reviews()}</p>
+                
+            </h1>
                 <GetAllReviewsForSpot/>
             </div>
         
