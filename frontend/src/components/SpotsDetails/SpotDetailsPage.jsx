@@ -23,6 +23,7 @@ const SpotDetailsPage = () => {
     };
 
     useEffect(() => {
+        
         dispatch(getSpotDetailsThunk(spotId))
     }, [spotId, dispatch])
 
