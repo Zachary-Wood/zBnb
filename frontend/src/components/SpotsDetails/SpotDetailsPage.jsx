@@ -11,10 +11,10 @@ const SpotDetailsPage = () => {
     const dispatch = useDispatch()
     const { spotId } = useParams()
 
-    let spots = useSelector(state => state.spots)
+    let spot = useSelector(state => state.spots)
+    const clickedSpot = spot[spotId]
+    // const clickedSpot = spots.find(spot => spot.id === +spotId)
     // console.log('spots',spots);
-    spots = Object.values(spots)
-    const clickedSpot = spots.find(spot => spot.id === +spotId)
     // console.log('clicked spot', clickedSpot);
     
     const alertBookingFeature = () => {

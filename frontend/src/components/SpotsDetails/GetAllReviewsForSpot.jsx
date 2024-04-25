@@ -56,7 +56,7 @@ return (
 
             <OpenModalButton
                 className="create-review-button"
-                modalComponent={<CreateAReview spot={spot} />}
+                modalComponent={<CreateAReview/>} 
                 buttonText="Post Your Review!"
             />
         )}

@@ -24,7 +24,7 @@ const SignUpForm = () => {
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
-    const [mainImage, setMainImage] = useState('')
+    const [previewImage, setPreviewImage] = useState('')
     const [spotImageOne, setSpotImageOne] = useState('')
     const [spotImageTwo, setSpotImageTwo] = useState('')
     const [spotImageThree, setSpotImageThree] = useState('')
@@ -52,11 +52,11 @@ const SignUpForm = () => {
         if(!name) errorsObj.name = 'Please provide a valid spot name'
         if(description.length < 30) errorsObj.description = 'Please provide a descriptive message for your place with at least 30 characters'
         if(!isNaN(price) === false || price.length < 1) errorsObj.price = 'Please provide a price that is a number'
-        if(!mainImage) errorsObj.mainImage = 'Spot must have at least a main image'
+        if(!previewImage) errorsObj.previewImage = 'Spot must have at least a main image'
 
         setErrors(errorsObj)
 
-    } ,[address, city, state, country, name, description, price, mainImage, currentUser, navigate])
+    } ,[address, city, state, country, name, description, price, previewImage, currentUser, navigate])
   
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -75,7 +75,7 @@ const SignUpForm = () => {
         }
 
         const newImages = {
-          mainImage,
+         previewImage,
           spotImageOne,
           spotImageTwo,
           spotImageThree,
@@ -262,13 +262,13 @@ const SignUpForm = () => {
             
             <input
             type="text"
-            value={mainImage}
-            onChange={(e) => setMainImage(e.target.value)}
+            value={previewImage}
+            onChange={(e) => setPreviewImage(e.target.value)}
             className="image-input"
             placeholder="Preview Image URL"
           />
           </label>
-          {errors.mainImage && <p className="errors-mess">{errors.mainImage}</p>}
+          {errors.pre && <p className="errors-mess">{errors.previewImage}</p>}
 
           <div className="image-input-con">
           <label>
