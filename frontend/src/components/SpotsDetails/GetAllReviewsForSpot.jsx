@@ -26,7 +26,7 @@ const GetAllReviewsForSpot = ({spot}) => {
     const currentUser = useSelector(state => state.session.user?.id)
     const spotsOwner = useSelector(state => state.spots?.[spotId].ownerId)
     // console.log(currentUser);
-    const alreadyReviewed = allReviews.find(review => review.userId === currentUser)
+    const alreadyReviewed = allReviews.some(review => review.userId === currentUser)
     
     const reviews = [...allReviews].reverse()
     console.log(reviews);
@@ -36,7 +36,7 @@ const GetAllReviewsForSpot = ({spot}) => {
     },[spotId, dispatch])
 
     useEffect(() => {
-        if (currentUser && reviews.find(review => review.userId === currentUser)) {
+        if (currentUser && reviews.some(review => review.userId === currentUser)) {
             setShowButton(false); 
         }
     }, [reviews, currentUser]);
@@ -56,8 +56,8 @@ return (
 
             <OpenModalButton
                 className="create-review-button"
-                modalComponent={<CreateAReview/>} 
                 buttonText="Post Your Review!"
+                modalComponent={<CreateAReview/>} 
             />
         )}
 

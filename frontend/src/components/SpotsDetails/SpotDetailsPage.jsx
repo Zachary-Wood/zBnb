@@ -43,7 +43,7 @@ const SpotDetailsPage = () => {
 
   return (
     <>
-        {clickedSpot &&
+        {clickedSpot && (
         
     <div className='selected-spot-con' >
             <div className='spot-details'>
@@ -95,10 +95,10 @@ const SpotDetailsPage = () => {
             </div>
         
         
-        
+       
         </div>
     </div> 
-        }
+        )}
     
     </>
   )
