@@ -13,8 +13,8 @@ const SpotDetailsPage = () => {
 
     let spots = useSelector(state => state.spots)
     // console.log('spots',spots);
-    spots = Object.values(spots)
-    const clickedSpot = spots.find(spot => spot.id === +spotId)
+    
+    const clickedSpot = spots[spotId]
     // console.log('clicked spot', clickedSpot);
     
     const alertBookingFeature = () => {
@@ -43,7 +43,7 @@ const SpotDetailsPage = () => {
 
   return (
     <>
-        {clickedSpot &&
+        {clickedSpot && (
         
     <div className='selected-spot-con' >
             <div className='spot-details'>
@@ -98,7 +98,7 @@ const SpotDetailsPage = () => {
         
         </div>
     </div> 
-        }
+        )}
     
     </>
   )
