@@ -10,7 +10,7 @@ const SpotDetailsPage = () => {
 
     const dispatch = useDispatch()
     const { spotId } = useParams()
-
+    const timestamp = Date.now();
     let spot = useSelector(state => state.spots)
     const clickedSpot = spot[spotId]
     // const clickedSpot = spots.find(spot => spot.id === +spotId)
@@ -35,6 +35,7 @@ const SpotDetailsPage = () => {
     };
 
     
+    
 
 
 
@@ -51,16 +52,15 @@ const SpotDetailsPage = () => {
                 <h3>{`${clickedSpot.city}, ${clickedSpot.state}, ${clickedSpot.country}`}</h3>
             </div>
 
-
         <div className='images-con'>
-            <img className='main-image' src={clickedSpot.SpotImages?.[0]?.url || `https://res.cloudinary.com/dstnyoxvl/image/upload/v1713641958/zBnb%20photoes/pngtree-no-image-vector-illustration-isolated-png-image_1694547_warkgu.jpg` } />
+            <img className='main-image' src={clickedSpot.SpotImages?.[0]?.url || `https://res.cloudinary.com/dstnyoxvl/image/upload/v1713641958/zBnb%20photoes/pngtree-no-image-vector-illustration-isolated-png-image_1694547_warkgu.jpg` } alt='previewImage'/>
                 <div className='left-images-con'>
-                    <img className='other-spot-images' src={clickedSpot.SpotImages?.[1]?.url || `https://res.cloudinary.com/dstnyoxvl/image/upload/v1713641958/zBnb%20photoes/pngtree-no-image-vector-illustration-isolated-png-image_1694547_warkgu.jpg` } />
-                    <img className='other-spot-images' src={clickedSpot.SpotImages?.[2]?.url || `https://res.cloudinary.com/dstnyoxvl/image/upload/v1713641958/zBnb%20photoes/pngtree-no-image-vector-illustration-isolated-png-image_1694547_warkgu.jpg` } />
+                    <img className='other-spot-images' src={clickedSpot.SpotImages?.[1]?.url || `https://res.cloudinary.com/dstnyoxvl/image/upload/v1713641958/zBnb%20photoes/pngtree-no-image-vector-illustration-isolated-png-image_1694547_warkgu.jpg` } alt='smallImage1'/>
+                    <img className='other-spot-images' src={clickedSpot.SpotImages?.[2]?.url || `https://res.cloudinary.com/dstnyoxvl/image/upload/v1713641958/zBnb%20photoes/pngtree-no-image-vector-illustration-isolated-png-image_1694547_warkgu.jpg` } alt='smallImage2'/>
                 </div>
                 <div className='right-images-con'>
-                    <img className='other-spot-images' src={clickedSpot.SpotImages?.[3]?.url || `https://res.cloudinary.com/dstnyoxvl/image/upload/v1713641958/zBnb%20photoes/pngtree-no-image-vector-illustration-isolated-png-image_1694547_warkgu.jpg` } />
-                    <img className='other-spot-images' src={clickedSpot.SpotImages?.[4]?.url || `https://res.cloudinary.com/dstnyoxvl/image/upload/v1713641958/zBnb%20photoes/pngtree-no-image-vector-illustration-isolated-png-image_1694547_warkgu.jpg` } />
+                    <img className='other-spot-images' src={`${clickedSpot.SpotImages?.[3]?.url}?t=${timestamp}` || `https://res.cloudinary.com/dstnyoxvl/image/upload/v1713641958/zBnb%20photoes/pngtree-no-image-vector-illustration-isolated-png-image_1694547_warkgu.jpg` } alt='smallImage3'/>
+                    <img className='other-spot-images' src={`${clickedSpot.SpotImages?.[4]?.url}?t=${timestamp}`|| `https://res.cloudinary.com/dstnyoxvl/image/upload/v1713641958/zBnb%20photoes/pngtree-no-image-vector-illustration-isolated-png-image_1694547_warkgu.jpg` } alt='smallImage4' />
                 </div>
 
 

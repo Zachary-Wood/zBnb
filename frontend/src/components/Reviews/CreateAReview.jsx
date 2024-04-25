@@ -18,7 +18,7 @@ const CreateAReview = () => {
     const currentUser = useSelector(state => state.session.user?.id)
     console.log(currentUser);
     const spotOwner = useSelector(state => state.spots?.[spotId].ownerId)
-    const reviewed = allReviews?.find(review => review.userId === currentUser)
+    const reviewed = allReviews.some(review => review.userId === currentUser)
     // console.log(reviewed);
 
   
@@ -48,7 +48,11 @@ const CreateAReview = () => {
     
     }, [review,stars])
 
-    
+    function clear() {
+        setReview('')
+        setStars(null)
+        setErrors({})
+    }
 
     const submitHandler = async (e)=>{
         e.preventDefault()
@@ -61,10 +65,7 @@ const CreateAReview = () => {
         await dispatch(postANewReviewForASpotThunk(newReview, spotId))
         await dispatch(getSpotDetailsThunk(spotId))
         closeModal();
-        setReview('')
-        setStars(null)
-        setErrors({})
-        // window.location.reload()
+        clear()
     }
 
 return (

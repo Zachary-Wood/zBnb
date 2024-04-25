@@ -5,7 +5,7 @@ const StarInput = ({stars, setStars}) => {
     const starRating = [1, 2, 3, 4, 5];
     return(<div className="stars-rating">
         <ul>
-
+        Stars
             {starRating.map(rating => {
                 return(<i 
                     key={`stars-rating-${rating}`}
@@ -14,7 +14,7 @@ const StarInput = ({stars, setStars}) => {
                     onMouseEnter={()=> setStarEffect(rating)}
                     onMouseLeave={()=> setStarEffect(stars)} />)
             })}
-            Stars
+
         </ul>
         
     </div>)
