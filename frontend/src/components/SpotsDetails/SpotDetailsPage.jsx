@@ -15,6 +15,7 @@ const SpotDetailsPage = () => {
     const clickedSpot = spot[spotId]
     // const clickedSpot = spots.find(spot => spot.id === +spotId)
     // console.log('spots',spots);
+    
     // console.log('clicked spot', clickedSpot);
     
     const alertBookingFeature = () => {
