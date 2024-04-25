@@ -60,10 +60,12 @@ function LoginFormModal() {
           />
         </label>
 
-        {errors.credential && <p>{errors.credential}</p>}
+        {errors.credential && <p className='errors-mess'>{'The provided credentials were invalid'}</p>}
         </div>
         <div className='btn-con'>
-        <button className='submit-btn' type="submit">Log In</button>
+        <button className='submit-btn' type="submit" 
+        disabled={credential.length < 4 || password.length < 6}
+        >Log In</button>
 
         <button type='demoUser' className='demo-btn' onClick={demoUserLogIn}>Login as Demo User</button>
         </div>

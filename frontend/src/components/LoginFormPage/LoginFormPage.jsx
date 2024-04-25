@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
+// import { useNavigate } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import './LoginForm.css';
 
@@ -11,7 +12,14 @@ function LoginFormPage() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
 
+
   if (sessionUser) return <Navigate to="/" replace={true} />;
+
+
+  // useEffect(() => {
+  //   const errorObj = {}
+  //   if(credential.length < 4) errorObj.credential = 'Username must be at least 4 characters'
+  // })
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,6 +28,7 @@ function LoginFormPage() {
       async (res) => {
         const data = await res.json();
         if (data?.errors) setErrors(data.errors);
+
       }
     );
   };
@@ -46,7 +55,7 @@ function LoginFormPage() {
             required
           />
         </label>
-        {errors.credential && <p>{errors.credential}</p>}
+        {errors.credential && <p className='errors-mess'>{errors.credential}</p>}
         <button type="submit">Log In</button>
       </form>
     </>

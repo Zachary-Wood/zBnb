@@ -27,11 +27,9 @@ const SpotDetailsPage = () => {
 
     const reviews = () => {
         if (!clickedSpot) return null;
-
         const { numReviews, avgStarRating } = clickedSpot;
-
-        if (numReviews > 1 && avgStarRating) return `${avgStarRating} · ${numReviews} reviews`;
-        else if (numReviews === 1 && avgStarRating)  return `${avgStarRating} · ${numReviews} review`;
+        if (numReviews > 1 && avgStarRating) return `${avgStarRating.toFixed(1)} · ${numReviews} reviews`;
+        else if (numReviews === 1 && avgStarRating)  return `${avgStarRating.toFixed(1)} · ${numReviews} review`;
         else return 'New';
         
     };
@@ -79,7 +77,8 @@ const SpotDetailsPage = () => {
             <div className='spot-price-rating-con'>
                 <div className='price-rating'>
                     <p>{`${clickedSpot.price} per night`}</p>
-                    <button className='booking-button' onClick={alertBookingFeature}>Book me</button>
+                    <button className='booking-button' onClick={alertBookingFeature}>Reserve</button>
+                    <p className='reviews-show'> {reviews()}</p>
             </div>
             </div>
             

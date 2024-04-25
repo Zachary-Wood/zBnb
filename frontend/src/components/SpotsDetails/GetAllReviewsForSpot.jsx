@@ -21,24 +21,31 @@ const GetAllReviewsForSpot = ({spot}) => {
 
 
     allReviews = Object.values(allReviews)
-    console.log('reviews', allReviews);
+    // console.log('reviews', allReviews);
     // console.log(reviews);
     const currentUser = useSelector(state => state.session.user?.id)
     const spotsOwner = useSelector(state => state.spots?.[spotId].ownerId)
     // console.log(currentUser);
     const alreadyReviewed = allReviews.find(review => review.userId === currentUser)
     
-    console.log(allReviews);
+    const reviews = [...allReviews].reverse()
+    console.log(reviews);
     useEffect(() => {
         dispatch(getAllReviewsFromSpotThunk(spotId))
         setShowButton(true)
     },[spotId, dispatch])
 
     useEffect(() => {
-        if (currentUser && allReviews.find(review => review.userId === currentUser)) {
+        if (currentUser && reviews.find(review => review.userId === currentUser)) {
             setShowButton(false); 
         }
-    }, [allReviews, currentUser]);
+    }, [reviews, currentUser]);
+
+    useEffect(() => {
+        if (spot && reviews.length > 0) {
+        setShowButton(true); 
+        }
+    }, [spot, reviews]);
 
 
 
@@ -50,7 +57,7 @@ return (
             <OpenModalButton
                 className="create-review-button"
                 modalComponent={<CreateAReview spot={spot} />}
-                buttonText="Create Review"
+                buttonText="Post Your Review!"
             />
         )}
 
@@ -58,11 +65,11 @@ return (
             </div>
 
         {!allReviews.length && currentUser && currentUser !== spotsOwner?.Owner?.id &&
-                <p>Be the first to post a review</p>
+                <p>Be the first to post a review!</p>
             }
     
     <div className="reviews-con">
-        { allReviews.map(review => 
+        { reviews.map(review => 
 
             <div key={review.id} className="reviews-text-con">
                 <h3 className="review-name">{`${review?.User?.firstName}`}</h3>

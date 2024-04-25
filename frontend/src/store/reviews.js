@@ -31,6 +31,7 @@ const deleteAReview = (reviewId) => ({
 export const getAllReviewsFromSpotThunk = (spotId) => async (dispatch) => {
     const res = await csrfFetch(`/api/spots/${spotId}/reviews`)
     const dataJSON = await res.json()
+    // console.log('data', dataJSON);
     dispatch(getAllReviews(dataJSON));
     return dataJSON
 }
@@ -44,6 +45,7 @@ export const postANewReviewForASpotThunk = (review, spotId) => async (dispatch) 
     })
 
     const newReview = await res.json()
+    console.log(newReview);
 
     await dispatch(createAReview(newReview))
     return newReview

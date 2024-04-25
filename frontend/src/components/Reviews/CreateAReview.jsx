@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import StarInput from "./StarsInput";
 import { postANewReviewForASpotThunk } from "../../store/reviews";
+import { getSpotDetailsThunk } from "../../store/spots";
+
 
 
 const CreateAReview = () => {
@@ -14,10 +16,12 @@ const CreateAReview = () => {
     let allReviews = useSelector(state => state.reviews)
     allReviews = Object.values(allReviews)
     const currentUser = useSelector(state => state.session.user?.id)
+    console.log(currentUser);
     const spotOwner = useSelector(state => state.spots?.[spotId].ownerId)
     const reviewed = allReviews?.find(review => review.userId === currentUser)
     // console.log(reviewed);
-    
+
+  
     
     
     
@@ -46,7 +50,7 @@ const CreateAReview = () => {
 
     
 
-    const submitHandler = async(e)=>{
+    const submitHandler = async (e)=>{
         e.preventDefault()
 
         const newReview = {
@@ -54,12 +58,13 @@ const CreateAReview = () => {
             stars
         }
 
-        await dispatch(postANewReviewForASpotThunk(newReview,spotId))
-        window.location.reload()
+        await dispatch(postANewReviewForASpotThunk(newReview, spotId))
+        await dispatch(getSpotDetailsThunk(spotId))
         closeModal();
         setReview('')
         setStars(null)
         setErrors({})
+        // window.location.reload()
     }
 
 return (
@@ -75,7 +80,7 @@ return (
                         {errors.review && <p className="errors-mess">{errors.review}</p>}
                     
                     
-                    <StarInput stars={stars} setStars={setStars}/>
+                    <StarInput setStars={setStars} stars={stars}/>
                     
                     <button
                     type="submit"
@@ -84,7 +89,7 @@ return (
                     Submit Your Review
                     </button>
                     {averageRating > 0 && (
-                    <div>{averageRating.toFixed(1)}</div>
+                    <div> Spots Average Rating: {averageRating.toFixed(1)}</div>
                     
                     )}
                             

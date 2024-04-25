@@ -50,8 +50,8 @@ const SignUpForm = () => {
         if(!state) errorsObj.state = 'Please provide a valid state'
         if(!country) errorsObj.country = 'Please provide a valid country'
         if(!name) errorsObj.name = 'Please provide a valid spot name'
-        if(!description) errorsObj.description = 'Please provide a descriptive message for your place with at least 30 characters'
-        if(!price) errorsObj.price = 'Please provide a price that is a number'
+        if(description.length < 30) errorsObj.description = 'Please provide a descriptive message for your place with at least 30 characters'
+        if(!isNaN(price) === false || price.length < 1) errorsObj.price = 'Please provide a price that is a number'
         if(!mainImage) errorsObj.mainImage = 'Spot must have at least a main image'
 
         setErrors(errorsObj)
@@ -318,7 +318,7 @@ const SignUpForm = () => {
           <div className="post-submit-container">
           <button className="submit-button" 
           type="submit"
-          onClick={(e) => e.console.log('button was clicked')}
+          // onClick={(e) => e.console.log('button was clicked')}
           disabled={Object.values(errors).length > 0}
 
           >Create a Spot</button>

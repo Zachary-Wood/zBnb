@@ -31,7 +31,7 @@ const HomePage = () => {
                     <h3 className="spot-location">{`${spot.city}, ${spot.state}`}</h3>
                     <p className="spot-price">{`$${spot.price} per night.`}</p>
                     <div className="spot-rating-con">
-                        <p className="spots-stars">{`${spot.avgRating || 'NEW'}`}</p>
+                        <p className="spots-stars">{spot.avgRating ? parseFloat(spot.avgRating).toFixed(1) : 'New'}</p>
                     </div>
 
                 </div>

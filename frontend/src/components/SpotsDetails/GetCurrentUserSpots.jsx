@@ -34,7 +34,7 @@ const GetCurrentUserSpots = () => {
     <>
 
     <div className="manage-spots-header">
-       <h1>Manage Your Spots!</h1>
+       <h1>Manage Your Spots</h1>
        <button className='submit-button' onClick={() => navigate('/spots/new')}>Create a new Spot</button>
 
        <section>

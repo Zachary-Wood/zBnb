@@ -51,6 +51,11 @@
 
 }
 
+.submit-btn:hover {
+    cursor: pointer;
+    
+}
+
 .demo-btn {
     width: 150px;
     height: 50px;
@@ -58,4 +63,8 @@
     color: white;
     border: 2px solid #43597D;
     border-radius: 10px;
+}
+
+.errors-mess {
+    background-color: #A0C0D6;
 }

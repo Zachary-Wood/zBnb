@@ -4,6 +4,9 @@ import { useModal } from "../../context/Modal"
 import { useDispatch } from "react-redux"
 import { useEffect } from "react"
 
+import { getSpotDetailsThunk } from "../../store/spots"
+
+
 
 
 export const DeleteAReview = ({reviewId, spotId}) => {
@@ -18,7 +21,8 @@ export const DeleteAReview = ({reviewId, spotId}) => {
     e.preventDefault()
     await dispatch(deleteAReviewByIdThunk(reviewId))
     closeModal()
-    window.location.reload()
+    await dispatch(getSpotDetailsThunk(spotId))
+    
   }
   
   return (
@@ -28,7 +32,7 @@ export const DeleteAReview = ({reviewId, spotId}) => {
             modalComponent={
                 <div className="delete-modal-con">
                     <div className="delete-modal-content"> 
-                    <h2 className="delete-h2">Delete This Review</h2>
+                    <h2 className="delete-h2">Delete</h2>
                     <p className="delete-text">Are you sure you want to delete this review?</p>
                 <div className="delte-buttons-con">
                     <button className="delete-button" onClick={deleteUserReview}>Yes (Delete Review)</button>
