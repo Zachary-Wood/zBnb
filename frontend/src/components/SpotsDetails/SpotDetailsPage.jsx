@@ -22,8 +22,9 @@ const SpotDetailsPage = () => {
     };
 
     useEffect(() => {
-        
+
         dispatch(getSpotDetailsThunk(spotId))
+
     }, [spotId, dispatch])
 
     const reviews = () => {
@@ -45,7 +46,7 @@ const SpotDetailsPage = () => {
 
   return (
     <>
-        {clickedSpot && (
+        {clickedSpot &&  (
         
     <div className='selected-spot-con' >
             <div className='spot-details'>

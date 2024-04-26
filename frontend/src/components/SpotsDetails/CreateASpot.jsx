@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { createASpotThunk } from "../../store/spots"
-import { getSpotDetailsThunk } from "../../store/spots"
+// import { getSpotDetailsThunk } from "../../store/spots"
 
 import './CreateASpot.css'
 
@@ -88,8 +88,7 @@ const SignUpForm = () => {
         }
 
         const createdSpot = await dispatch(createASpotThunk(newSpot, newImages))
-        dispatch(getSpotDetailsThunk(createASpotThunk))
-        setTimeout(navigate(`/spots/${createdSpot.id}`), 1000)
+        navigate(`/spots/${createdSpot.id}`)
        
 
 
@@ -279,7 +278,7 @@ const SignUpForm = () => {
           <div className="image-input-con">
           
           <label>
-          {errors.previewImage && <p className="error-msg">{errors.previewImage}</p>}
+          {errors.previewImage && <p className="errors-mess">{errors.previewImage}</p>}
 
             <input
             type="text"
@@ -289,7 +288,7 @@ const SignUpForm = () => {
             placeholder="Image URL"
           />
           </label>
-          {errors.spotImageOne && <p className="error-msg">{errors.spotImageOne}</p>}
+          {errors.spotImageOne && <p className="errors-mess">{errors.spotImageOne}</p>}
 
           <label>
             
@@ -301,7 +300,7 @@ const SignUpForm = () => {
             placeholder="Image URL"
           />
           </label>
-          {errors.spotImageTwo && <p className="error-msg">{errors.spotImageTwo}</p>}
+          {errors.spotImageTwo && <p className="errors-mess">{errors.spotImageTwo}</p>}
 
           <label>
             
@@ -313,7 +312,7 @@ const SignUpForm = () => {
             placeholder="Image URL"
           />
           </label>
-          {errors.spotImageThree && <p className="error-msg">{errors.spotImageThree}</p>}
+          {errors.spotImageThree && <p className="errors-mess">{errors.spotImageThree}</p>}
 
           <label>
             
@@ -325,7 +324,7 @@ const SignUpForm = () => {
             placeholder="Image URL"
           />
           </label>
-          {errors.spotImageFour && <p className="error-msg">{errors.spotImageFour}</p>}
+          {errors.spotImageFour && <p className="errors-mess">{errors.spotImageFour}</p>}
           </div>
           <div className="post-submit-container">
           <button className="submit-button" 

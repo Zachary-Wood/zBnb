@@ -5,6 +5,7 @@
 }
 
 .spots-con {
+    padding-top: 50px;
     margin-top: 20px;
     display: flex;
     flex-wrap: wrap;

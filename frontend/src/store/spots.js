@@ -67,7 +67,7 @@ export const getAllSpotsThunk = () => async (dispatch) => {
 export const getSpotDetailsThunk = (spotId) => async (dispatch) => {
     const res = await csrfFetch(`/api/spots/${spotId}`)
     const dataJSON = await res.json()
-    dispatch(getSpotById(dataJSON))
+    await dispatch(getSpotById(dataJSON))
     // console.log(dataJSON);
     return res
 }
@@ -88,9 +88,9 @@ export const createASpotThunk = (spot, images) => async dispatch => {
         const newSpot = await res.json()
         // console.log(newSpot)
 
-        const spotImagesAdded = imageLinks.forEach(url => {
+        const spotImagesAdded = imageLinks.forEach(async (url) => {
 
-            csrfFetch(`/api/spots/${newSpot.id}/images`, {
+            await csrfFetch(`/api/spots/${newSpot.id}/images`, {
                 method: 'POST',
                 headers: {"Content-Type":"application/json"},
                 body: JSON.stringify({url: url, preview: true})
