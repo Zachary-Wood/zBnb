@@ -6,7 +6,7 @@ import { createASpotThunk } from "../../store/spots"
 // import { getSpotDetailsThunk } from "../../store/spots"
 
 import './CreateASpot.css'
-
+// hello
 
 
 const SignUpForm = () => {
