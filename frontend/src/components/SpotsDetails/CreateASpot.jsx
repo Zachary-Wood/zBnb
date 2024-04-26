@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { createASpotThunk } from "../../store/spots"
-// import { getSpotDetailsThunk } from "../../store/spots"
+import { getSpotDetailsThunk } from "../../store/spots"
 
 import './CreateASpot.css'
 
@@ -53,10 +53,15 @@ const SignUpForm = () => {
         if(description.length < 30) errorsObj.description = 'Please provide a descriptive message for your place with at least 30 characters'
         if(!isNaN(price) === false || price.length < 1) errorsObj.price = 'Please provide a price that is a number'
         if(!previewImage) errorsObj.previewImage = 'Spot must have at least a main image'
+        if(previewImage.length && !(previewImage.endsWith('.png') || previewImage.endsWith('.jpg') || previewImage.endsWith('.jpeg'))) errorsObj.mainImage = 'Image URL needs to end in png or jpg (or jpeg)';
+        if(spotImageOne.length && !(spotImageOne.endsWith('.png') || spotImageOne.endsWith('.jpg') || spotImageOne.endsWith('.jpeg'))) errorsObj.spotImageOne = 'Image URL needs to end in png or jpg (or jpeg)';
+        if(spotImageTwo.length && !(spotImageTwo.endsWith('.png') || spotImageTwo.endsWith('.jpg') || spotImageTwo.endsWith('.jpeg'))) errorsObj.spotImageTwo = 'Image URL needs to end in png or jpg (or jpeg)';
+        if(spotImageThree.length && !(spotImageThree.endsWith('.png') || spotImageThree.endsWith('.jpg') || spotImageThree.endsWith('.jpeg'))) errorsObj.spotImageThree = 'Image URL needs to end in png or jpg (or jpeg)';
+        if(spotImageFour.length && !(spotImageFour.endsWith('.png') || spotImageFour.endsWith('.jpg') || spotImageFour.endsWith('.jpeg'))) errorsObj.spotImageFour = 'Image URL needs to end in png or jpg (or jpeg)';
 
         setErrors(errorsObj)
 
-    } ,[address, city, state, country, name, description, price, previewImage, currentUser, navigate])
+    } ,[address, city, state, country, name, description, price, previewImage, currentUser, navigate, spotImageOne, spotImageTwo, spotImageThree, spotImageFour])
   
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -83,7 +88,8 @@ const SignUpForm = () => {
         }
 
         const createdSpot = await dispatch(createASpotThunk(newSpot, newImages))
-        navigate(`/spots/${createdSpot.id}`)
+        dispatch(getSpotDetailsThunk(createASpotThunk))
+        setTimeout(navigate(`/spots/${createdSpot.id}`), 1000)
        
 
 
@@ -271,8 +277,10 @@ const SignUpForm = () => {
           {errors.pre && <p className="errors-mess">{errors.previewImage}</p>}
 
           <div className="image-input-con">
+          
           <label>
-            
+          {errors.previewImage && <p className="error-msg">{errors.previewImage}</p>}
+
             <input
             type="text"
             value={spotImageOne}
@@ -281,6 +289,7 @@ const SignUpForm = () => {
             placeholder="Image URL"
           />
           </label>
+          {errors.spotImageOne && <p className="error-msg">{errors.spotImageOne}</p>}
 
           <label>
             
@@ -292,6 +301,7 @@ const SignUpForm = () => {
             placeholder="Image URL"
           />
           </label>
+          {errors.spotImageTwo && <p className="error-msg">{errors.spotImageTwo}</p>}
 
           <label>
             
@@ -303,6 +313,7 @@ const SignUpForm = () => {
             placeholder="Image URL"
           />
           </label>
+          {errors.spotImageThree && <p className="error-msg">{errors.spotImageThree}</p>}
 
           <label>
             
@@ -314,6 +325,7 @@ const SignUpForm = () => {
             placeholder="Image URL"
           />
           </label>
+          {errors.spotImageFour && <p className="error-msg">{errors.spotImageFour}</p>}
           </div>
           <div className="post-submit-container">
           <button className="submit-button" 

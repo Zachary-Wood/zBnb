@@ -54,5 +54,24 @@
 
 }
 
+.spot-image-home {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title-tooltip {
+    visibility: hidden;
+    position: absolute;
+    
+}
+
+.spot-image-home:hover .title-tooltip {
+    visibility: visible;
+}
+
+
+
 
 

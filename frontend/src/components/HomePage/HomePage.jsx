@@ -26,7 +26,11 @@ const HomePage = () => {
 
                 <div key={spot.id} className="spot-landing-con">
                 <NavLink to={`/spots/${spot.id}`}>
+                <div className="spot-image-home">
                 <img className="spot-image" src={spot.previewImage}/>
+                <span className="title-tooltip">{spot.name}</span>
+                </div>
+                
                 <div className="spot-location-info-con">
                     <h3 className="spot-location">{`${spot.city}, ${spot.state}`}</h3>
                     <p className="spot-price">{`$${spot.price} per night.`}</p>
