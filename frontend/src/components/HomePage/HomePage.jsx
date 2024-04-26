@@ -12,6 +12,7 @@ const HomePage = () => {
     let data = useSelector(state => state.spots)
     data = Object.values(data)
     // console.log(data);
+    // hello
 
     useEffect( () => {
         
