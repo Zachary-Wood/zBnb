@@ -25,8 +25,8 @@ const HomePage = () => {
         <div className="spots-con">
             { data && data.map((spot) => (
 
-                <div key={spot.id} className="spot-landing-con">
-                <NavLink to={`/spots/${spot.id}`}>
+                <NavLink to={`/spots/${spot.id}`} key={spot.id} className="spot-landing-con">
+                <div key={spot.id}>
                 <div className="spot-image-home">
                 <img className="spot-image" src={spot.previewImage}/>
                 <span className="title-tooltip">{spot.name}</span>
@@ -40,8 +40,8 @@ const HomePage = () => {
                     </div>
 
                 </div>
-                </NavLink>
                 </div>
+                </NavLink>
 
               ))}
 
