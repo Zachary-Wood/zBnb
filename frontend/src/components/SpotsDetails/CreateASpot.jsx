@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { createASpotThunk } from "../../store/spots"
-// import { getSpotDetailsThunk } from "../../store/spots"
+import { getSpotDetailsThunk } from "../../store/spots"
 
 import './CreateASpot.css'
 // hello
@@ -88,9 +88,17 @@ const SignUpForm = () => {
           spotImageFour
         }
 
-        const createdSpot = await dispatch(createASpotThunk(newSpot, newImages))
-        navigate(`/spots/${createdSpot.id}`)
-        window.location.reload()
+        try {
+        
+          const createdSpot = await dispatch(createASpotThunk(newSpot, newImages));
+          
+  
+          await dispatch(getSpotDetailsThunk(createdSpot.id));
+          
+          navigate(`/spots/${createdSpot.id}`);
+      } catch (error) {
+          console.error("Error creating your spot", error);
+      }
        
 
 
