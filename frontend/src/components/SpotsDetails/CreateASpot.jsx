@@ -83,8 +83,10 @@ const SignUpForm = () => {
         }
 
         const createdSpot = await dispatch(createASpotThunk(newSpot, newImages))
-        dispatch(getSpotDetailsThunk(newSpot, newImages))
+
         navigate(`/spots/${createdSpot.id}`)
+        dispatch(getSpotDetailsThunk(createdSpot))
+        window.location.reload();
 
 
 

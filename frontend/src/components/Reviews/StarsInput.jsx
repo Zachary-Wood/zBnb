@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const StarInput = ({ stars, setStars }) => {
-  const [starEffect, setStarEffect] = useState(stars);
+  const [setStarEffect] = useState(stars);
   const starRating = [1, 2, 3, 4, 5];
   return (
     <div className="stars-rating">
