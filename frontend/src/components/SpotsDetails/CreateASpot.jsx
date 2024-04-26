@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { createASpotThunk } from "../../store/spots"
-import { getSpotDetailsThunk } from "../../store/spots"
+// import { getSpotDetailsThunk } from "../../store/spots"
 
 import './CreateASpot.css'
 
@@ -83,10 +83,8 @@ const SignUpForm = () => {
         }
 
         const createdSpot = await dispatch(createASpotThunk(newSpot, newImages))
-
         navigate(`/spots/${createdSpot.id}`)
-        dispatch(getSpotDetailsThunk(createdSpot))
-        window.location.reload();
+       
 
 
 

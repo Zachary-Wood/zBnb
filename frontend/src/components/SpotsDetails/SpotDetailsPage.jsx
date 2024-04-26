@@ -10,8 +10,8 @@ const SpotDetailsPage = () => {
 
     const dispatch = useDispatch()
     const { spotId } = useParams()
-    let spot = useSelector(state => state.spots)
-    const clickedSpot = spot[spotId]
+    const clickedSpot = useSelector(state => state.spots[spotId])
+    
     // const clickedSpot = spots.find(spot => spot.id === +spotId)
     // console.log('spots',spots);
     
