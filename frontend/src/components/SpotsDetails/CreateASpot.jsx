@@ -54,11 +54,11 @@ const SignUpForm = () => {
         if(description.length < 30) errorsObj.description = 'Please provide a descriptive message for your place with at least 30 characters'
         if(!isNaN(price) === false || price.length < 1) errorsObj.price = 'Please provide a price that is a number'
         if(!previewImage) errorsObj.previewImage = 'Spot must have at least a main image'
-        if(previewImage.length && !(previewImage.endsWith('.png') || previewImage.endsWith('.jpg') || previewImage.endsWith('.jpeg'))) errorsObj.mainImage = 'Image URL needs to end in png or jpg (or jpeg)';
-        if(spotImageOne.length && !(spotImageOne.endsWith('.png') || spotImageOne.endsWith('.jpg') || spotImageOne.endsWith('.jpeg'))) errorsObj.spotImageOne = 'Image URL needs to end in png or jpg (or jpeg)';
-        if(spotImageTwo.length && !(spotImageTwo.endsWith('.png') || spotImageTwo.endsWith('.jpg') || spotImageTwo.endsWith('.jpeg'))) errorsObj.spotImageTwo = 'Image URL needs to end in png or jpg (or jpeg)';
-        if(spotImageThree.length && !(spotImageThree.endsWith('.png') || spotImageThree.endsWith('.jpg') || spotImageThree.endsWith('.jpeg'))) errorsObj.spotImageThree = 'Image URL needs to end in png or jpg (or jpeg)';
-        if(spotImageFour.length && !(spotImageFour.endsWith('.png') || spotImageFour.endsWith('.jpg') || spotImageFour.endsWith('.jpeg'))) errorsObj.spotImageFour = 'Image URL needs to end in png or jpg (or jpeg)';
+        if(previewImage.length && !(previewImage.endsWith('.png') || previewImage.endsWith('.jpg') || previewImage.endsWith('.jpeg') || previewImage.endsWith('.webp'))) errorsObj.mainImage = 'Image URL needs to end in png or jpg (or jpeg)';
+        if(spotImageOne.length && !(spotImageOne.endsWith('.png') || spotImageOne.endsWith('.jpg') || spotImageOne.endsWith('.jpeg') || spotImageOne.endsWith('.webp'))) errorsObj.spotImageOne = 'Image URL needs to end in png or jpg (or jpeg)';
+        if(spotImageTwo.length && !(spotImageTwo.endsWith('.png') || spotImageTwo.endsWith('.jpg') || spotImageTwo.endsWith('.jpeg') || spotImageTwo.endsWith('.webp'))) errorsObj.spotImageTwo = 'Image URL needs to end in png or jpg (or jpeg)';
+        if(spotImageThree.length && !(spotImageThree.endsWith('.png') || spotImageThree.endsWith('.jpg') || spotImageThree.endsWith('.jpeg') || spotImageThree.endsWith('.webp'))) errorsObj.spotImageThree = 'Image URL needs to end in png or jpg (or jpeg)';
+        if(spotImageFour.length && !(spotImageFour.endsWith('.png') || spotImageFour.endsWith('.jpg') || spotImageFour.endsWith('.jpeg') || spotImageFour.endsWith('.webp'))) errorsObj.spotImageFour = 'Image URL needs to end in png or jpg (or jpeg)';
 
         setErrors(errorsObj)
 
