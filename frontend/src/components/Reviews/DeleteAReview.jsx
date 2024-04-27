@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux"
 import { useEffect } from "react"
 
 import { getSpotDetailsThunk } from "../../store/spots"
+import './DeleteAReview.css'
 
 
 
@@ -26,9 +27,10 @@ export const DeleteAReview = ({reviewId, spotId}) => {
   }
   
   return (
-    
+        <div className="delete-btn">
         <OpenModalButton
-            buttonText={'Delete This Review'}
+            buttonText='Delete This Review'
+            className="delete-review-btn"
             modalComponent={
                 <div className="delete-modal-con">
                     <div className="delete-modal-content"> 
@@ -43,6 +45,7 @@ export const DeleteAReview = ({reviewId, spotId}) => {
                 </div>
             }
          />
+         </div>
 
   )
 }

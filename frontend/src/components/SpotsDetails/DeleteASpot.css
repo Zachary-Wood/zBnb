@@ -1,0 +1,74 @@
+
+
+.delete-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 650px;
+    height: 450px;
+    align-items: center;
+    background-color: #ede8f5;
+}
+.delete-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.delete-warning {
+    padding-top: 50px;
+    color: #3d52a0;
+
+}
+
+.warning-message  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.warning {
+    color: #7091e6;
+}
+
+.last-warning {
+    padding-top: 25px;
+    font-weight: 500;
+    font-size: larger;
+    color: red;
+}
+
+.button-delete-con {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-top: 30px;
+}
+
+.no-btn-del {
+    background-color: #3d52a0;
+    width: 400px;
+    height: 55px;
+    color: white;
+}
+
+.yes-btn-delete {
+    background-color: #af0909;
+    width: 400px;
+    height: 55px;
+    color: white;
+
+}
+
+.yes-btn-delete:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 15px red;
+}
+
+.no-btn-del:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 15px #43597D
+}
+
+
+

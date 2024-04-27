@@ -2,16 +2,79 @@
     display: flex;
     padding-top: 20px;
     padding-bottom: 20px;
+    flex-wrap: wrap;
+    display: flex;
+}
+
+.current-spot-landing-con {
+    background-color: #ede8f5;
+    padding: 15px;
 }
 
 .update-button {
-    background-color: #DE7456;
+    background-color: #2d52a0;
     height: 50px;
-    width: 300px;
+    width: 200px;
     border-radius: 10px;
     color: white;
 
     
+}
+
+.nav-padding {
+    padding-left: 65px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.current-spot-price {
+    padding-left: 15px;
+}
+
+.current-spots-stars {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+
+}
+
+.current-spot-location {
+    font-size: 20px;
+    padding-left: 15px;
+}
+
+
+.spot-location-stars p {
+    font-size: 20px;
+
+}
+
+
+.spot-location-stars {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.button-con {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+
+.current-spot-image {
+    width: 100%;
+    height: 350px;
+}
+
+.manage-spots-header {
+    display: flex;
+    flex-direction: column;
+    padding: 100px;
+    padding-left: 100px;
+    
+    gap: 25px;
 }
 
 .update-button:hover {
@@ -20,7 +83,7 @@
 
 
 .yes-btn {
-    background-color: #DE7456;
+    background-color: red;
     height: 50px;
     width: 300px;
     border-radius: 10px;
@@ -34,15 +97,38 @@
     color: white;
 }
 
+.modal {
+    width: 150px;
+}
+
+.delete-modal-con {
+    width: 400px;
+    height: 250px;
+    background-color: #ede8f5;
+}
+
 .delete-button-container button {
-    background-color: #DE7456;
+    background-color: #3d52a0;
     height: 50px;
-    width: 300px;
+    width: 200px;
     border-radius: 10px;
     color: white;
 }
 
 .delete-button-container button:hover {
     cursor: pointer;
+}
+
+
+.manage-h1 {
+    color: #7091e6;
+    font-size: 50px;
+}
+
+.update-button:hover {
+    box-shadow: 0px 0px 15px #43597D
+}
+.delete-btn-getall:hover {
+    box-shadow: 0px 0px 15px #43597D
 }
 

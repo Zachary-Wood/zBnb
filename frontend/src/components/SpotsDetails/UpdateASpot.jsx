@@ -83,7 +83,7 @@ const UpdateASpot = () => {
 
   return (
     <div className='update-form-con'>
-        <h1>Update Your Spot</h1>
+        <h1 className='update-h1'>Update Your Spot</h1>
         <div className="spot-text-con">
           <h3 className="place-heading">{`Where's your place located?`}</h3>
           <p className="place-text">Guests will only get your exact address once they book a reservation.</p>
@@ -220,7 +220,7 @@ const UpdateASpot = () => {
 
           <div className="spot-price-post-con">
             <h3 className="spot-heading-price">Set a base price for our spot</h3>
-            <p className="spot-price"> Competitive pricing can help your listing stand out and rank higher 
+            <p className="spot-price-update"> Competitive pricing can help your listing stand out and rank higher 
             in search results
             </p>
          </div>

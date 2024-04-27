@@ -45,7 +45,7 @@ export const postANewReviewForASpotThunk = (review, spotId) => async (dispatch) 
     })
 
     const newReview = await res.json()
-    console.log(newReview);
+    // console.log(newReview);
 
     await dispatch(createAReview(newReview))
     return newReview
@@ -73,7 +73,7 @@ function reviewsReducer(state = {}, action) {
             action.reviews.Reviews.forEach((review) => {
                 newState[review.id] = review
             })
-            console.log('new', newState);
+            // console.log('new', newState);
             return newState
         }
         case CREATE_A_REVIEW: {

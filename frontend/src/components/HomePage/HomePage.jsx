@@ -3,6 +3,7 @@ import { getAllSpotsThunk } from "../../store/spots";
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import './homepage.css'
+import { FaStar } from "react-icons/fa";
 
 const HomePage = () => {
     const dispatch = useDispatch()
@@ -24,24 +25,30 @@ const HomePage = () => {
     <section>
         <div className="spots-con">
             { data && data.map((spot) => (
+                
+                
+                <NavLink to={`/spots/${spot.id}`} key={spot.id} className="spot-landing-con-home">
 
-                <NavLink to={`/spots/${spot.id}`} key={spot.id} className="spot-landing-con">
-                <div key={spot.id}>
-                <div className="spot-image-home">
+                
                 <img className="spot-image" src={spot.previewImage}/>
                 <span className="title-tooltip">{spot.name}</span>
-                </div>
+            
                 
                 <div className="spot-location-info-con">
+                    <div className="spot-location-rating">
                     <h3 className="spot-location">{`${spot.city}, ${spot.state}`}</h3>
-                    <p className="spot-price">{`$${spot.price} per night.`}</p>
                     <div className="spot-rating-con">
+                        <FaStar className="fa-star"/>
                         <p className="spots-stars">{spot.avgRating ? parseFloat(spot.avgRating).toFixed(1) : 'New'}</p>
                     </div>
+                    </div>
+                    <p className="spot-price">{`$${spot.price} per night.`}</p>
+                    
 
                 </div>
-                </div>
+            
                 </NavLink>
+                
 
               ))}
 

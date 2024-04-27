@@ -1,0 +1,51 @@
+
+
+
+.spot-details-review-header button {
+    background-color: #3D52A0;
+    border-radius: none;
+    width: 350px;
+}
+
+.spot-details-review-header {
+    padding-bottom: 30px;
+}
+
+.be-the-first {
+    font-size: 25px;
+    color: #3D52A0;
+    font-weight: 300;
+}
+
+.reviews-text-con {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.review-name {
+    font-size: 25px;
+    color: #3D52A0;
+
+}
+
+.date-created {
+    color: #7091e6;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+
+.reviews-con {
+    display: flex;
+    flex-direction: column;
+    padding-top: 15px;
+}
+
+.review-name {
+    padding-top: 20px;
+}
+
+.delete-review-btn {
+    width: 50px;
+}

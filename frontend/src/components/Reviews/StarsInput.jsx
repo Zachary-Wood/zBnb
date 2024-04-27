@@ -1,13 +1,14 @@
 import { useState } from "react";
 
 const StarInput = ({ stars, setStars }) => {
-  const [setStarEffect] = useState(stars);
+  const [starsEffect, setStarEffect] = useState(stars);
+  starsEffect
   const starRating = [1, 2, 3, 4, 5];
   return (
     <div className="stars-rating">
       
       
-      <ul>
+      <ul className="reviews-ul">
 
         {starRating.map((rating) => {
           return (

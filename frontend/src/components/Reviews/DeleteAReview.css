@@ -1,0 +1,62 @@
+.delete-btn button {
+    width: 150px;
+    height: 30px;
+    background-color: #3d52a0;
+    color: #ede8f5;
+}
+
+.delete-modal-con {
+    width: 400px;
+    height: 250px;
+    background-color: #ede8f5;
+}
+
+.delete-modal-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.delete-h2 {
+    padding-top: 50px;
+    color: #3d52a0;
+    font-size: 30px;
+}
+
+.delete-text {
+    color: #7091e6;
+}
+
+.delte-buttons-con {
+    display: flex;
+    gap: 20px;
+}
+
+.delete-button {
+    background-color: #3d52a0;
+    color: #ede8f5;
+    width: 150px;
+    height: 50px;
+    border: 2px solid #7091e6;
+}
+
+.keep-button {
+    background-color: #3d52a0;
+    color: #ede8f5;
+    width: 150px;
+    height: 50px;
+    border: 2px solid #7091e6;
+}
+
+.delete-button:hover {
+    cursor: pointer;
+    box-shadow: 5px 0px 5px #7091e6;
+}
+
+.keep-button:hover {
+    cursor: pointer;
+    box-shadow: 5px 0px 5px #7091e6;
+}
+

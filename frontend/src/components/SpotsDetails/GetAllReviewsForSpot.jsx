@@ -7,6 +7,7 @@ import OpenModalButton from '../OpenModalButton/OpenModalButton'
 import { useState } from "react";
 import { DeleteAReview } from "../Reviews/DeleteAReview";
 // import { FaStar } from "react-icons/fa";
+import './GetAllReviewsForSpot.css'
 
 
 
@@ -29,7 +30,7 @@ const GetAllReviewsForSpot = ({spot}) => {
     const alreadyReviewed = allReviews.some(review => review.userId === currentUser)
     
     const reviews = [...allReviews].reverse()
-    console.log(reviews);
+    // console.log(reviews);
     useEffect(() => {
         dispatch(getAllReviewsFromSpotThunk(spotId))
         setShowButton(true)
@@ -65,12 +66,12 @@ return (
             </div>
 
         {!allReviews.length && currentUser && currentUser !== spotsOwner?.Owner?.id &&
-                <p>Be the first to post a review!</p>
+                <p className="be-the-first">Be the first to post a review!</p>
             }
     
     <div className="reviews-con">
         { reviews.map(review => 
-
+        
             <div key={review.id} className="reviews-text-con">
                 <h3 className="review-name">{`${review?.User?.firstName}`}</h3>
                 <p className="date-created">{`${`${new Date(review.createdAt).getMonth()}-${new Date(review.createdAt).getDate()}-${new Date(review.createdAt).getFullYear()} `  }`}</p>
@@ -78,7 +79,7 @@ return (
 
 
                 
-                {review.userId === currentUser && <DeleteAReview reviewId={review.id} spotId={spotId} />}
+                {review.userId === currentUser && <DeleteAReview className="delte-review-btn" reviewId={review.id} spotId={spotId} />}
             </div>
         )}
         

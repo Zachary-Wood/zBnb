@@ -1,53 +1,113 @@
 * {
-    background-color: lightgray;
+    /* background-color: #EDE8F5; */
     padding: 0px;
     margin: 0px;
 }
 
 .spots-con {
-    padding-top: 50px;
-    margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
-    gap: 15px;
-    padding-top: 100px;
+    padding: 110px 25px;
     margin: 30px;
-    justify-content: space-between;
+    gap: 32px;
+    background-color: none;
+
       
 }
 
-.spot-image {
-    width: 450px;
-    height: 300px;
-    padding: 20px;
-    margin: 15px;
-    border-radius: 50px;
+.spot-landing-con-home {
+    width: 23%;
+    padding-top: 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    background-color: #EDE8F5;
+    
 }
 
-.spot-info-con {
-    width: calc(30% - 20px); 
-    height: 450px;
+h3.spot-location {
+    font-size: 25px;
+    color: #3D52A0;
+}
+
+.spots-stars {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spot-price {
+    font-size: 20px;
+}
+
+
+
+.spot-image {
+    width: 95%;
+    height: 350px;
+    padding: 25px;
+    padding: 10px;
+    border-radius: 15%;
+
+}
+
+.spot-location-info-con {
+    width: 100%; 
     display: flex;
     flex-direction: column;
     margin-bottom: 50px;
-    border-radius: 15px;
+    padding-right: 10px;
+    padding-top: 25px;
+    
 }
 
-.spot-info-con:hover {
-    box-shadow: 15px 10px 10px lightslategrey;
-
-}
-
-.spot-landing-con {
-    padding-left: 25px;
-    margin: 15px;
+.spot-location-info-con *{
+    padding: 10px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 15px;
-    background-color: #A0C0D6;
+    align-items: center;
+
 }
+.spot-location-rating {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+}
+
+.spot-rating-con {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 25px;
+}
+
+p.spots-stars {
+    font-size: 25px;
+}
+
+
+svg.fa-star {
+    width: 25px;
+    height: 25px;
+    padding: 10px;
+    padding-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.spot-location-info-con .spots-stars {
+    padding: 0;
+    margin: 0;
+}
+
+.spot-landing-con-home:hover {
+    box-shadow: 20px 20px 50px lightslategrey;
+
+}
+
+
+
+
 
 .spot-location {
     color: black;

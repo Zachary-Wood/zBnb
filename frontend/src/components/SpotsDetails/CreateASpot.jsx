@@ -108,7 +108,7 @@ const SignUpForm = () => {
   
     return (
     <div className="form-con">
-      <h1>Create a new spot!</h1>
+      <h1 className="create-a-spot-h1">Create a new spot!</h1>
         <div className="spot-text-con">
           <h3 className="place-heading">{`Where's your place located?`}</h3>
           <p className="place-text">Guests will only get your exact address once they book a reservation.</p>
@@ -246,7 +246,7 @@ const SignUpForm = () => {
 
           <div className="spot-price-post-con">
             <h3 className="spot-heading-price">Set a base price for our spot</h3>
-            <p className="spot-price"> Competitive pricing can help your listing stand out and rank higher 
+            <p className="spot-price-post"> Competitive pricing can help your listing stand out and rank higher 
             in search results
             </p>
          </div>
@@ -265,7 +265,7 @@ const SignUpForm = () => {
 
           <div className="spot-images-post-con">
             <h3 className="spot-heading-images">Liven up your spot with photos</h3>
-            <p className="spot-price"> Submit a link to at least one photo to publish your spot.
+            <p className="spot-price-post"> Submit a link to at least one photo to publish your spot.
             </p>
          </div>
          

@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import StarInput from "./StarsInput";
 import { postANewReviewForASpotThunk } from "../../store/reviews";
 import { getSpotDetailsThunk } from "../../store/spots";
-
+import './CreateAReview.css'
 
 
 const CreateAReview = () => {
@@ -16,7 +16,7 @@ const CreateAReview = () => {
     let allReviews = useSelector(state => state.reviews)
     allReviews = Object.values(allReviews)
     const currentUser = useSelector(state => state.session.user?.id)
-    console.log(currentUser);
+    // console.log(currentUser);
     const spotOwner = useSelector(state => state.spots?.[spotId].ownerId)
     const reviewed = allReviews.some(review => review.userId === currentUser)
     // console.log(reviewed);
@@ -71,9 +71,12 @@ const CreateAReview = () => {
 return (
     <>
         {currentUser && (currentUser !== spotOwner) && !reviewed && (
+            <div className="review-box">
             <form onSubmit={submitHandler}>
-                <h2>How was your stay?</h2>
+                <div className="items-review-con">
+                <h2 className="review-h2">How was your stay?</h2>
                     <textarea 
+                    className="review-text-area"
                      type="text"
                      value={review}
                      onChange={(e) => setReview(e.target.value)}
@@ -81,20 +84,21 @@ return (
                         {errors.review && <p className="errors-mess">{errors.review}</p>}
                     
                     
-                    <StarInput setStars={setStars} stars={stars}/>
+                    <StarInput className='stars-hover' setStars={setStars} stars={stars}/>
                     
                     <button
                     type="submit"
-                    className="delete-review-button"
+                    className="post-review-button"
                     disabled={Object.values(errors).length > 0}>
                     Submit Your Review
                     </button>
                     {averageRating > 0 && (
-                    <div> Spots Average Rating: {averageRating.toFixed(1)}</div>
+                    <div className="spot-average"> Spots Average Rating: {averageRating.toFixed(1)}</div>
                     
                     )}
-                            
+                    </div> 
             </form>
+            </div>
         )}
     </>
     )

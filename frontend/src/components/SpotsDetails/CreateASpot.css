@@ -5,6 +5,11 @@
     flex-direction: column;
     gap: 15px;
     padding-top: 30px;
+    background-color:#ede8f5 ;
+}
+
+.create-a-spot-h1 {
+    color: #3D52A0;
 }
 
 .spot-text-con {
@@ -15,6 +20,32 @@
     padding-top: 15px;
 
 }
+
+.place-heading {
+    color: #7091e6;
+}
+
+.spot-heading {
+    color: #7091e6;
+}
+
+.spot-heading-title {
+    color: #7091e6;
+}
+
+.spot-heading-price {
+    color: #7091e6;
+}
+
+.spot-heading-images {
+    color: #7091e6;
+}
+
+.submit-button:disabled {
+    cursor: alias;
+}
+
+
 
 
 .country-address-con {
@@ -180,7 +211,7 @@
 }
 
 .submit-button {
-    background-color: #DE7456;
+    background-color: #3D52A0;
     height: 50px;
     width: 300px;
     border-radius: 10px;
@@ -192,3 +223,9 @@
     cursor: pointer;
     box-shadow: 0px 0px 15px #43597D;
 }
+
+.submit-button:disabled:hover {
+    cursor: not-allowed;
+    box-shadow: 0px 0px 15px red;
+}
+

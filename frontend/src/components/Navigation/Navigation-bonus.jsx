@@ -4,6 +4,7 @@ import ProfileButton from './ProfileButton-bonus';
 import { TbBrandAirbnb } from "react-icons/tb";
 import './Navigation.css';
 
+
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
 
@@ -12,8 +13,11 @@ function Navigation({ isLoaded }) {
     <ul className='navigation-con'>
       <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jersey+25&display=swap" rel="stylesheet"></link>
       <li className='logo'>
-        <TbBrandAirbnb className='zbnb-logo'/>
-        <NavLink to="/">Zbnb</NavLink>
+        <div className='logo-con'>
+
+        <TbBrandAirbnb className='logo'/>
+        <NavLink to="/" className='zbnb-logo'>Zbnb</NavLink>
+        </div>
       </li>
       {isLoaded && (
         <li className='right-buttons'>

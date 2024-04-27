@@ -5,6 +5,7 @@ import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import { useNavigate } from 'react-router-dom';
+import { FaUserCircle } from "react-icons/fa";
 
 import "./ProfileButton.css"
 import { NavLink } from 'react-router-dom';
@@ -48,7 +49,7 @@ function ProfileButton({ user }) {
   return (
     <>
       <button onClick={toggleMenu}>
-        <i className="fas fa-user-circle" />
+        <FaUserCircle className="fas fa-user-circle"/>
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (

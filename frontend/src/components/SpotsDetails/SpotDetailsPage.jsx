@@ -50,8 +50,8 @@ const SpotDetailsPage = () => {
         
     <div className='selected-spot-con' >
             <div className='spot-details'>
-                <h2>{clickedSpot.name}</h2>
-                <h3>{`${clickedSpot.city}, ${clickedSpot.state}, ${clickedSpot.country}`}</h3>
+                <h2 className='spot-h2'>{clickedSpot.name}</h2>
+                <h3 className='spot-h3'>{`${clickedSpot.city}, ${clickedSpot.state}, ${clickedSpot.country}`}</h3>
             </div>
 
         <div className='images-con'>
@@ -73,32 +73,38 @@ const SpotDetailsPage = () => {
 
        <div className='spot-info-con-id'>
             <div className='spot-description-con'>
-                <h3>{`Hosted by ${clickedSpot.Owner?.firstName} ${clickedSpot.Owner?.lastName}`}</h3>
+                <h3 className='spot-details-h3'>{`Hosted by ${clickedSpot.Owner?.firstName} ${clickedSpot.Owner?.lastName}`}</h3>
                 <p>{`${clickedSpot.description}`}</p>
             </div>
+            
+            
+
+            
             <div className='spot-price-rating-con'>
                 <div className='price-rating'>
-                    <p>{`${clickedSpot.price} per night`}</p>
+                    <p className='spotdetail-text'>{`$${clickedSpot.price} per night`}</p>
+                    <p className='spotdetail-text'><FaStar/> {reviews()}</p>
+                </div>
+                <div className='btn-con-spotdetails'>
                     <button className='booking-button' onClick={alertBookingFeature}>Reserve</button>
-                    <p className='reviews-show'> {reviews()}</p>
+                </div>
             </div>
             </div>
             
             <div className="review-con">
-            <h1>
-                <i className="">
-                    <FaStar/>
-                </i>
-                
-                <p className=""> {reviews()}</p>
+
+            <div className='stars-reviews'>
+            <h1 className='stars-color'>
+                <p className=""><FaStar/> {reviews()}</p>
                 
             </h1>
+            </div>
                 <GetAllReviewsForSpot/>
             </div>
         
         
        
-        </div>
+
     </div> 
         )}
     

@@ -1,3 +1,6 @@
+
+
+
 .spot-con-info {
     border: none;
     box-shadow: none;
@@ -5,42 +8,125 @@
 
 a {
     text-decoration: none;
-    background-color: #A0c0D6;
     font-family: "Bebas Neue", sans-serif;
     font-weight: 200;
-    color: #DE7456;
+    color: #3D52A0;
     
   }
+
+.zbnb-logo {
+    color: #ede8f5;
+}
+
+.logo-con {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 60px;
+}
+
+.logo-con .logo {
+    padding-top: 7px;
+}
+
+.logo {
+    color: #ede8f5;
+    height: 50px;
+    width: 50px;
+}
 
 
 .selected-spot-con {
     display: flex;
     flex-direction: column;
-    padding: 50px;
-    gap: 30px;
+    padding: 200px;
+    gap: 20px;
     
 }
 
+.spot-info-con-id {
+    padding-top: 30px;
+    display: flex;
+    width: 100%;
+    border-bottom: 3px solid #3D52A0;
+    padding-bottom: 25px;
+
+}
+.spot-description-con {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 15px;
+    padding-right: 20px;
+
+}
+
+.spot-price-rating-con {
+    border: 2px solid #3D52A0;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    width: 470px;
+    padding: 25px;
+}
+
+.price-rating {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    font-size: 20px;
+}
 .spot-details {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
+.spot-details-h3 {
+    color: #3D52A0
+}
+
+.spotdetail-text {
+    color: #3D52A0;
+    
+}
+
+.spot-h2 {
+    font-size: 25px;
+    color: #3D52A0;
+}
+
+.spot-h3 {
+    color: #8697c4;
+}
+
+.btn-con-spotdetails {
+    padding-top: 25px;
+    display: flex;
+    justify-content: center;
+
+}
+
 .booking-button {
-    background-color: #DE7456;
+    background-color: #3D52A0;
     height: 50px;
-    width: 200px;
-    border: none;
+    width: 425px;
+    border: 3px solid #ADBBDA;
     color: white;
     font-weight: bold;
     font-size: 15px;
-    border-radius: 15px;
+}
+
+.booking-button:hover {
+    box-shadow: 0px 0px 15px #43597D;
+    cursor: pointer;
 }
 
 .images-con {
     display: flex;
-    padding: 50px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    width: 100%;
     gap: 5px;
 }
 
@@ -55,7 +141,7 @@ a {
 }
 
 .other-spot-images {
-    width: 250px;
+    width: 315px;
     height: 250px;
 }
 
@@ -76,5 +162,22 @@ a {
 }
 .spot-details-review-header button:hover {
     cursor: pointer;
+}
+
+.stars-reviews {
+    display: flex;
+    gap: 25px;
+    padding-bottom: 25px;
+}
+.stars-color {
+    color: #3D52A0;
+}
+
+.reviews-con {
+    display: flex;
+}
+
+img:hover {
+    box-shadow: 0px 0px 15px #43597D
 }
 

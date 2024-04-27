@@ -5,4 +5,9 @@
     flex-direction: column;
     gap: 15px;
     padding-top: 30px;
+    background-color: #ede8f5;
+}
+
+.update-h1 {
+    color: #3d52a0;
 }

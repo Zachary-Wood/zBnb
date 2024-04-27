@@ -1,16 +1,17 @@
 
 .drop-downbox {
     height: 75px;
-    width: 145px;
-    border: 2px solid #DE7456;
+    width: 130px;
     position: absolute;
-    right: -2px;
-    top: 0px;
+    right: 5px;
+    top: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
+    background-color: #EDE8F5;
+    padding: 10px;
 }
 
 .drop-downbox li {
@@ -18,21 +19,26 @@
     font-size: 20px;
     font-weight: 200;
     font-family: "Bebas Neue", sans-serif;
+    border-bottom: 1px solid #3d52a0;
 }
+
+
 
 .profile-dropdown {
     height: 175px;
-    width: 145px;
-    border: 2px solid #DE7456;
+    width: 140px;
+    border: 2px solid #3d52a0;
     position: absolute;
-    right: 26px;
-    top: 100px;
+    right: 23px;
+    top: 105px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 10px;
     padding-top: 5px;
+    padding: 10px;
+    background-color: #EDE8F5;
 }
 
 .profile-dropdown li {
@@ -42,19 +48,42 @@
     list-style: none;
     font-size: 20px;
     font-weight: 200;
+    color: #3d52a0;
     font-family: "Bebas Neue", sans-serif;
 }
 
+.profile-dropdown .manage-spots {
+    background-color: none;
+}
+
+.profile-dropdown a {
+    background-color: none;
+    padding-top: 3px;
+}
+
 .logout-btn-con {
-    padding-bottom: 15px;
+    padding: 10px;
+
 }
 
 .logout-btn {
     background-color: #43597D;
-    height: 25px;
-    width: 100px;
-    color: white
+    height: 35px;
+    width: 120px;
+    color: white;
 }
+
+.logout-btn:hover {
+    box-shadow: 0px 0px 15px #43597D;
+    cursor: pointer;
+}
+
+.fa-user-circle path {
+    width: 25px;
+    height: 25px;
+}
+
+
 
 
 

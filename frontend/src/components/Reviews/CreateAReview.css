@@ -1,0 +1,55 @@
+.review-h2 {
+    font-size: 35px;
+    color: #3d52a0;
+    padding-top: 25px;
+}
+
+.review-box {
+    height: 525px;
+    width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ede8f5;
+}
+
+.items-review-con {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.spot-average {
+    color: #7091e6;
+    font-size: 15px;
+}
+
+.review-text-area {
+    width: 350px;
+    height: 200px;
+    padding: 10px;
+}
+
+.fa-star {
+    color: #FFC000;
+    padding-right: 5px;
+}
+
+.reviews-ul {
+    color: #3d52a0;
+    font-size: 20px;
+}
+
+.post-review-button {
+    background-color: #3d52a0;
+    color: #ede8f5;
+    width: 200px;
+    height: 50px;
+    border: 2px solid #adbbda;
+}
+
+.post-review-button:hover {
+    box-shadow: 5px 0px 5px #7091e6;
+}
