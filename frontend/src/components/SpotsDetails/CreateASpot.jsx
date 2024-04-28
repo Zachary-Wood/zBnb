@@ -59,7 +59,7 @@ const SignUpForm = () => {
         if(spotImageTwo.length && !(spotImageTwo.endsWith('.png') || spotImageTwo.endsWith('.jpg') || spotImageTwo.endsWith('.jpeg') || spotImageTwo.endsWith('.webp'))) errorsObj.spotImageTwo = 'Image URL needs to end in png or jpg (or jpeg)';
         if(spotImageThree.length && !(spotImageThree.endsWith('.png') || spotImageThree.endsWith('.jpg') || spotImageThree.endsWith('.jpeg') || spotImageThree.endsWith('.webp'))) errorsObj.spotImageThree = 'Image URL needs to end in png or jpg (or jpeg)';
         if(spotImageFour.length && !(spotImageFour.endsWith('.png') || spotImageFour.endsWith('.jpg') || spotImageFour.endsWith('.jpeg') || spotImageFour.endsWith('.webp'))) errorsObj.spotImageFour = 'Image URL needs to end in png or jpg (or jpeg)';
-
+        if(description.length > 255) errorsObj.description = 'Description must be less than 255 characters'
         setErrors(errorsObj)
 
     } ,[address, city, state, country, name, description, price, previewImage, currentUser, navigate, spotImageOne, spotImageTwo, spotImageThree, spotImageFour])

@@ -48,6 +48,7 @@ const UpdateASpot = () => {
         if(!name) errorsObj.name = 'Please provide a valid spot name'
         if(!description) errorsObj.description = 'Please provide a descriptive message for your place with at least 30 characters'
         if(!price) errorsObj.price = 'Please provide a price that is a number'
+        if(description.length > 255) errorsObj.description = 'Description must be less than 255 characters'
 
         setErrors(errorsObj)
 

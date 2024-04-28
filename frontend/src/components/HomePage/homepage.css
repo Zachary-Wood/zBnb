@@ -132,6 +132,21 @@ svg.fa-star {
     visibility: visible;
 }
 
+.title-tooltip {
+    visibility: hidden;
+    position: absolute;
+    background-color: #3D52A0;
+    color: white;
+    text-align: center;
+    width: 415px;
+    padding: 7px;
+    margin-top: 20px;
+    font-size: 17px;
+}
+.spot-landing-con-home:hover:hover .title-tooltip{
+    visibility: visible;
+}
+
 
 
 
