@@ -31,19 +31,14 @@ module.exports = {
         review: `"From the moment we arrived at this stunning Destin Airbnb, we knew we were in for a treat. The location couldn't have been more perfect, 
         with easy access to the beautiful beaches and all the local attractions. The interior of the rental was simply breathtaking – 
         spacious, immaculately decorated, and equipped with every modern convenience we could have hoped for. We loved lounging in the sunlit living room, cooking meals in the gourmet kitchen, 
-        and savoring morning coffee on the private balcony overlooking the Gulf of Mexico.
-        The attention to detail and level of comfort provided by the hosts truly exceeded our expectations. Every aspect of our stay was meticulously planned, from the plush bedding to the thoughtful 
-        amenities provided throughout the rental. We felt pampered and well-cared-for throughout our entire stay. Whether you're planning a romantic getaway, a family vacation, or a fun-filled adventure with friends, 
-        this Destin Airbnb is the perfect choice for an unforgettable escape by the sea. We can't wait to return!"`,
+        and savoring morning coffee on the private balcony overlooking the Gulf of Mexico.`,
         stars: 5
       },
       {
         spotId: 2,
         userId: 2,
         review: `
-        "Our stay at this Hilton Head Airbnb was nothing short of magical. From the moment we arrived, we were greeted with warm hospitality and a sense of tranquility that instantly put us at ease. The rental itself was beautifully appointed, with every detail carefully considered to ensure our comfort and enjoyment. We loved spending lazy mornings sipping coffee on the private patio, surrounded by lush greenery and the gentle sounds of nature. The proximity to the beach was a definite highlight, allowing us to easily access the pristine shores for long walks and peaceful moments by the water.
-        
-        The island itself offered a wealth of activities to explore, from scenic bike rides along the coastline to delicious dining experiences at local seafood restaurants. Our hosts were incredibly gracious and provided us with invaluable recommendations for things to see and do during our stay. Overall, our time at this Hilton Head Airbnb exceeded all expectations, and we can't wait to return for another unforgettable getaway."`,
+        "Our stay at this Hilton Head Airbnb was nothing short of magical. From the moment we arrived, we were greeted with warm hospitality and a sense of tranquility that instantly put us at ease. The rental itself was beautifully appointed, with every detail carefully considered to ensure our comfort and enjoyment. We loved spending lazy mornings sipping coffee on the private patio, surrounded by lush greenery and the gentle sounds of nature. The proximity to the beach was a definite highlight, allowing us to easily access the pristine shores for long walks and peaceful moments by the water.`,
         stars: 2
       },
       {

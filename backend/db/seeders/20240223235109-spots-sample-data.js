@@ -59,10 +59,9 @@ module.exports = {
         lat: 38.013,
         lng: -1158898,
         name: 'Beach Villa',
-        description: `
-        Escape to the tropical paradise of Puerto Rico with our exquisite Airbnb rental, where sun-drenched beaches, vibrant culture, and lush landscapes await. Nestled amidst swaying palm trees and just moments away from the crystal-clear waters of the Caribbean Sea, our charming accommodation offers the perfect blend of comfort and luxury. Step inside to discover a beautifully designed interior, featuring modern amenities, stylish decor, and breathtaking views of the surrounding scenery. Whether you're lounging on the private terrace, soaking in the sun by the pool, or exploring the island's rich history and natural wonders, you'll find endless opportunities for relaxation and adventure right at your fingertips.
-        
-        Outside your door, Puerto Rico beckons with its diverse array of attractions and activities. Spend your days basking on the golden sands of Flamenco Beach, snorkeling among colorful coral reefs, or wandering through the cobblestone streets of Old San Juan. Indulge in mouthwatering cuisine at local eateries, dance the night away to the rhythm of salsa music, or simply unwind with a cocktail as you watch the sunset over the ocean. With its prime location, luxurious amenities, and warm hospitality, our Puerto Rico Airbnb promises an unforgettable island getaway for travelers seeking the ultimate tropical retreat.`,
+        description: `Nestled amid the vibrant culture and breathtaking landscapes of Puerto Rico, our Airbnb offers an unforgettable retreat for travelers seeking a blend of relaxation and adventure. Situated on the stunning coastline, our charming property boasts panoramic views of the azure Caribbean Sea, inviting guests to unwind in the embrace of tropical paradise. Whether lounging on the sun-kissed beaches just steps away, or exploring the rich history and lively atmosphere of nearby Old San Juan, our conveniently located Airbnb serves as the perfect launchpad for immersive island experiences.
+
+        Step inside our thoughtfully curated Airbnb, where modern comforts harmonize with authentic Puerto Rican charm. Elegantly furnished and adorned with local artwork, each room exudes a warm and inviting ambiance, inviting guests to feel right at home. Savor morning coffee on the private terrace, soak up the Caribbean sun in the lush garden, or indulge in a culinary adventure using fresh ingredients sourced from nearby markets. With its idyllic setting and personalized touches, our Puerto Rico Airbnb promises a memorable stay filled with relaxation, exploration, and the true essence of island living.`,
         price: 950
       },
       {

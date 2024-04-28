@@ -43,16 +43,11 @@ module.exports = (sequelize, DataTypes) => {
     city: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [3,30]
-      }
+
     },
     state: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [3,30]
-      }
     },
     country: {
       type: DataTypes.STRING,
@@ -75,7 +70,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
       
     },
