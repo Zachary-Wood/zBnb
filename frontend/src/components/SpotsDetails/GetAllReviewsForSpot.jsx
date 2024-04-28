@@ -39,6 +39,8 @@ const GetAllReviewsForSpot = ({spot}) => {
     useEffect(() => {
         if (currentUser && reviews.some(review => review.userId === currentUser)) {
             setShowButton(false); 
+        } else {
+            setShowButton(true)
         }
     }, [reviews, currentUser]);
 
