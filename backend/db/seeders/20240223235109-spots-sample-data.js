@@ -32,7 +32,7 @@ module.exports = {
         lat: 38.19011,
         lng: -112.14,
         name: 'Beach House',
-        description: `Escape to the stunning shores of Destin, Florida, where pristine white sands and emerald waters await you at our exquisite Airbnb rental. Nestled in the heart of this charming coastal town, our vacation home offers the perfect blend of luxury and relaxation.`,
+        description: `Escape to the stunning shores of Destin, Florida, where pristine white sands and emerald waters await you at our exquisite Airbnb rental.`,
         price: 850
       },
       {

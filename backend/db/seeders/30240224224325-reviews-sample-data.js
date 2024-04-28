@@ -28,8 +28,7 @@ module.exports = {
       {
         spotId: 1,
         userId: 1,
-        review: `"From the moment we arrived at this stunning Destin Airbnb, we knew we were in for a treat. The location couldn't have been more perfect, 
-        with easy access to the beautiful beaches and all the local attractions.`,
+        review: `"From the moment we arrived at this stunning Destin Airbnb, we knew we were in for a treat. The location couldn't have been more perfect.`,
         stars: 5
       },
       {
