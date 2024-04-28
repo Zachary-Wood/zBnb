@@ -28,9 +28,10 @@ const GetAllReviewsForSpot = ({spot}) => {
     const spotsOwner = useSelector(state => state.spots?.[spotId].ownerId)
     // console.log(currentUser);
     const alreadyReviewed = allReviews.some(review => review.userId === currentUser)
-    
+    // reverses the reviews to be the newest on first
     const reviews = [...allReviews].reverse()
     // console.log(reviews);
+    
     useEffect(() => {
         dispatch(getAllReviewsFromSpotThunk(spotId))
         setShowButton(true)
